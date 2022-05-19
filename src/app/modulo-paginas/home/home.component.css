@@ -1,0 +1,16 @@
+.row{
+    background-color: rgb(227, 227, 227);
+    padding: 0px;
+    margin:0px;
+    height:130px;
+}
+
+#botonCita{
+    width:200px;
+    height:50px;
+    border:2px solid white;
+}
+
+
+
+
