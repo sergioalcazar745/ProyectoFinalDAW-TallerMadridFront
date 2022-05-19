@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">
+      <img src="../../../assets/LOGO.PNG" class="d-inline-block align-top" id="logo" alt="">
+    </a>
+    <!-- <img src="../../../assets/LOGO.PNG" alt="" width="30" height="24" class="d-inline-block align-text-top" routerLink="/inicio" >
+        -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" *ngFor="let op of opciones">
+          <a class="nav-link active" aria-current="page" [routerLink]='op.ruta'>{{op.texto}}</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
