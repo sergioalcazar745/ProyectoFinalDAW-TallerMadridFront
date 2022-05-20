@@ -1,14 +1,18 @@
-.row{
+.pideCita{
     background-color: rgb(227, 227, 227);
     padding: 0px;
     margin:0px;
-    height:130px;
+    padding:25px;
 }
 
 #botonCita{
     width:200px;
     height:50px;
     border:2px solid white;
+}
+
+.alturaCard .card{
+    height: 500px;
 }
 
 
