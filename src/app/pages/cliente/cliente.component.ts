@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SclienteService } from 'src/app/services/scliente.service';
-import {Observable} from 'rxjs';
 import { User } from 'src/app/interfaces/user';
 
 @Component({
