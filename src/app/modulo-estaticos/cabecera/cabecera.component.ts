@@ -13,8 +13,8 @@ export class CabeceraComponent implements OnInit {
       ruta:'/ADMIN'
     },
     {
-      texto:'PEDIR CITA',
-      ruta:'/CITA'
+      texto:'NUESTROS SERVICIOS',
+      ruta:'/SERVICIOS'
     },
     {
       texto:'CONTACTO',
