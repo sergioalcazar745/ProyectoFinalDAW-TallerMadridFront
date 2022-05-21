@@ -12,7 +12,15 @@
 }
 
 .alturaCard .card{
-    height: 500px;
+    height: 450px;
+}
+
+.card-title{
+    font-size: 20px;
+}
+
+.card-text{
+    font-size: 15px;
 }
 
 
