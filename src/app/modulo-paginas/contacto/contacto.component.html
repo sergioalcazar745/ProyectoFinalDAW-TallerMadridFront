@@ -41,13 +41,13 @@
             <div class="col-5 offset-1 my-3">
                 <legend>Datos del vehiculo</legend>
                 <div class="row form-group my-3">
-                    <label for="nombre" class="col-lg-3 col-md-12 col-form-label">Marca y modelo</label>
+                    <label for="nombre" class="col-lg-3 col-md-12 col-form-label">Marca/Modelo</label>
                     <div class="col-lg-9">
                         <input type="text" class="form-control" id="nombre" placeholder="Seat ibiza">
                     </div>
                 </div>
                 <div class="row form-group my-3">
-                    <label for="descripcion" class="col-lg-3 col-md-12 col-form-label">Descripcion</label>
+                    <label for="descripcion" class="col-lg-3 col-md-12 col-form-label">Descripción</label>
                     <div class="col-lg-9">
                         <textarea class="form-control" id="descripcion" placeholder="Describe el problema"
                             rows="5"></textarea>
@@ -55,12 +55,33 @@
                 </div>
             </div>
             <div class="col-lg-3 offset-9">
-                <button type="button" class="btn btn-warning font-weight-bold btn-block" id="botonCita" routerLink="SERVICIOS">PIDE
+                <button type="button" class="btn btn-warning font-weight-bold btn-block" id="botonCita"
+                    routerLink="SERVICIOS">PIDE
                     TU CITA</button>
             </div>
         </form>
- 
+
     </div>
 
-   
+
 </div>
+
+
+<div class="row mapa">
+    <!--<i class="fa-solid fa-car-wrench"></i>
+         <i class="faCoffee"></i>
+      -->
+    <div class="col-lg-1 mt-4 mb-4 offset-lg-2">
+      <!--  <i class="fab fa-angellist fa-5x"></i>  -->
+      <img src="../../../assets/iconoUbicacion.png" alt="...">
+    </div>
+  
+    <div class="col-lg-6 mt-5">
+      <p class="h4 font-weight-bold" id="titulo">ENCUENTRANOS AQUÍ</p>
+      <p>No olvides donde estamos. Visitanos aquí </p>
+  
+    </div>
+    <div class="col-lg-3 mt-5">
+      <button type="button" class="btn btn-warning font-weight-bold" id="botonCita" routerLink="/UBICACION">UBICACION</button>
+    </div>
+  </div>

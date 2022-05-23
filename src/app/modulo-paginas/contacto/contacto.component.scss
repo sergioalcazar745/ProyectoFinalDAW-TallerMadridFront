@@ -7,9 +7,11 @@ hr{
 
 form{
    // background-color: #FFB51D;
+    background-color: rgb(227, 227, 227);
     padding: 5px;
-    //box-shadow: 2px 2px 2px #CCCCCC;
+    box-shadow: 3px 3px 3px #b0b0b0;
     margin-top: 30px;
+    margin-bottom: 30px;
 
 }
 
@@ -17,5 +19,13 @@ form{
     width:200px;
     height:50px;
     border:2px solid white;
+}
+
+.mapa{
+    background-color: rgb(227, 227, 227);
+    padding: 0px;
+    margin:0px;
+    padding:25px;
+    margin-top: 30px;
 }
 
