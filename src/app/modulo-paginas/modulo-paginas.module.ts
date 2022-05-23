@@ -5,6 +5,7 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { UbicacionComponent } from './ubicacion/ubicacion.component';
 import { HomeComponent } from './home/home.component';
 import { ServiciosComponent } from './servicios/servicios.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 
@@ -17,7 +18,8 @@ import { ServiciosComponent } from './servicios/servicios.component';
     ServiciosComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AppRoutingModule
   ],
   exports:[
     AdminComponent,
