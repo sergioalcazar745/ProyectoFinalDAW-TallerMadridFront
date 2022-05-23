@@ -2,5 +2,5 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 body{
    /* font-family: 'Lato',sans-serif;*/
-    font-family: 'Montserrat';
+   font-family: 'Montserrat', sans-serif;
 }
