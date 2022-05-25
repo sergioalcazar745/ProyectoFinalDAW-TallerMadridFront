@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cabecera',
@@ -7,22 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CabeceraComponent implements OnInit {
 
+  sesion:boolean=false;
   opciones:any=[
     {
-      texto:'ADMINISTRACIÓN',
-      ruta:'/ADMIN'
+      texto:'Administracion',
+      ruta:'/admin'
     },
     {
-      texto:'NUESTROS SERVICIOS',
-      ruta:'/SERVICIOS'
+      texto:'Nuestros servicios',
+      ruta:'/servicios'
     },
     {
-      texto:'CONTACTO',
-      ruta:'/CONTACTO'
+      texto:'Contacto',
+      ruta:'/contacto'
     },
     {
-      texto:'UBICACIÓN',
-      ruta:'/UBICACION'
+      texto:'Ubicacion',
+      ruta:'/ubicacion'
     }
   ]
 
@@ -30,5 +32,4 @@ export class CabeceraComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

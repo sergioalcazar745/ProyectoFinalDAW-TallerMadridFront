@@ -6,6 +6,7 @@ import { UbicacionComponent } from './ubicacion/ubicacion.component';
 import { HomeComponent } from './home/home.component';
 import { ServiciosComponent } from './servicios/servicios.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 
 
 
@@ -15,7 +16,8 @@ import { AppRoutingModule } from '../app-routing.module';
     ContactoComponent,
     UbicacionComponent,
     HomeComponent,
-    ServiciosComponent
+    ServiciosComponent,
+    InicioSesionComponent
   ],
   imports: [
     CommonModule,
