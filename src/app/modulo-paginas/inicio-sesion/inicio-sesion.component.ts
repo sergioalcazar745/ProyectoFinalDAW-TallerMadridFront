@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
+import { InicioSesionService } from 'src/app/services/inicioSesionService';
+
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -8,8 +10,32 @@ import { environment } from 'src/environments/environment';
 })
 export class InicioSesionComponent implements OnInit {
 
-  constructor() { }
+  usuario:string="";
+  password:string="";
+  error:Boolean=false;
+  constructor(private servicioSesion: InicioSesionService, private router: Router) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  login() {
+    console.log("Usuario: " + this.usuario + " Password: " + this.password)
+    this.servicioSesion.getUsu(this.usuario, this.password).subscribe(
+      data => {
+        console.log('----')
+        console.log(data);
+        //Aquí hay crear el token
+        localStorage.setItem("sesion", "true")
+        this.router.navigateByUrl("/inicio")
+        return true;
+      },
+      error => {
+        console.log('console del errorsito')
+        console.log(error);
+        this.error=true;
+        this.usuario=""
+        this.password=""
+      }
+    )
+    return false;
   }
 }

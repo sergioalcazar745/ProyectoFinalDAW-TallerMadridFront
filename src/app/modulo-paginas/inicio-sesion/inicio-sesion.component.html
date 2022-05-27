@@ -3,21 +3,22 @@
         <div id="caja">
             <form class="rounded row d-flex justify-content-center align-items-center" style="height: 100vh">
                 <div class="col-7 col-lg-5 border border-dark rounded bg-dark p-4">
+                    <p class="alert alert-danger" *ngIf="error">Usuario o contraseña es incorrecto</p>
                     <legend class="text-center mb-4">Inicio de sesion</legend>
                     <div class="row form-group my-3">
                         <label for="email" class="col-lg-3 col-md-12 col-form-label">Email</label>
                         <div class="col-lg-9">
-                            <input type="email" class="form-control" id="email" placeholder="nombre@gmail.com">
+                            <input type="email" class="form-control" id="email" placeholder="nombre@gmail.com" [(ngModel)]="usuario" name="usuario">
                         </div>
                     </div>
                     <div class="row form-group my-3">
                         <label for="password" class="col-lg-3 col-md-12 col-form-label">Contraseña</label>
                         <div class="col-lg-9">
-                            <input type="password" class="form-control" id="password" placeholder="Contraseña">
+                            <input type="password" class="form-control" id="password" placeholder="Contraseña" [(ngModel)]="password" name="password">
                         </div>
                     </div>
                     <div class="row form-group mt-4 d-flex justify-content-center">
-                        <a href="" class="btn btn-success">Login</a>
+                        <a href="" class="btn btn-success" (click)="login()">Login</a>
                     </div>                    
                 </div>
             </form>

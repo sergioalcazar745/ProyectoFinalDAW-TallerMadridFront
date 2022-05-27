@@ -1,5 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { Sesion } from 'src/app/services/sesion.service';
 
 @Component({
   selector: 'app-cabecera',
@@ -8,7 +10,6 @@ import { environment } from 'src/environments/environment';
 })
 export class CabeceraComponent implements OnInit {
 
-  sesion:boolean=false;
   opciones:any=[
     {
       texto:'Administracion',
@@ -28,8 +29,21 @@ export class CabeceraComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  data:any="";
+  constructor(private sesion: Sesion, private router: Router) {}
 
   ngOnInit(): void {
+    console.log("data: " + this.data)
+    if(localStorage.getItem("sesion") != null){
+      this.data = localStorage.getItem("sesion")
+    }      
+    console.log("EY: " + this.sesion.getData())
+  }
+
+  logout(){
+    console.log("El señor de la noche")
+    localStorage.clear()
+    this.data=null;
+    this.router.navigateByUrl("/inicio")
   }
 }
