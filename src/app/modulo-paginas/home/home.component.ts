@@ -10,9 +10,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit(): void {
-
+  ngOnInit(): void {    
   }
 }

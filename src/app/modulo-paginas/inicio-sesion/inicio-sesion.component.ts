@@ -25,8 +25,9 @@ export class InicioSesionComponent implements OnInit {
         console.log(data);
         //Aquí hay crear el token
         localStorage.setItem("sesion", "true")
-        this.router.navigateByUrl("/inicio")
-        return true;
+        this.router.navigateByUrl("/clientes")
+        localStorage.setItem("reload", "true")
+        //return true;
       },
       error => {
         console.log('console del errorsito')
