@@ -1,1 +1,67 @@
-<p>facturacion works!</p>
+<div class="row">
+    <img src="../../../assets/img_telefono.png" class="img-fluid" alt="...">
+</div>
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <button class="btn btn-primary" >
+        Crea una grafica para ver tus ingresos/gastos</button>
+    </div>
+
+    <div class="col-lg-12" >
+    <!-- [ngStyle]="{'display':displayStyle}"> -->
+    
+        <p>Prueba</p>
+    </div>
+
+
+
+
+    <div class="col-lg-12">
+        <table class="table mt-4" id="tablaArreglos">
+          <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Fecha</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Vehiculo</th>
+                </tr>
+          </thead>
+            <tbody > 
+                <tr *ngFor="let item in arreglos">
+                    <td>{{item.id}}</td>
+                    <td>{{item.descripcion}}</td>
+                    <td>{{item.fecha}}</td>
+                    <td>{{arreglos[0].id}}</td>
+                    <td>{{item.precio}}</td>
+                </tr>
+           </tbody> 
+        </table>
+
+        <table class="table mt-5" id="tablaGastos">
+            <thead>
+                  <tr>
+                      <th>Fecha</th>
+                      <th>Usuario</th>
+                      <th>Concepto</th>
+                      <th>importe</th>
+           
+                  </tr>
+            </thead>
+              <tbody > 
+                  <tr *ngFor="let item in gastos; let i = index ">
+                      <td>{{item[i].fecha}}</td>
+                      <td>{{item[i].usuario.username}}</td>
+                      <td>{{item[i].comcepto}}</td>
+                      <td>{{item[i].importe}}</td>
+                  </tr>
+             </tbody> 
+          </table>
+    </div>
+
+
+</div>
+
+<p>{{arreglos[0].id}}</p>
