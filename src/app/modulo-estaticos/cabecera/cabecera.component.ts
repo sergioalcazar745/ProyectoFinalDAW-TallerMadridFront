@@ -29,7 +29,22 @@ export class CabeceraComponent implements OnInit {
     }
   ]
 
-  data:any="";
+  opcionesAdmin:any=[
+    {
+      texto:'Clientes',
+      ruta:'/clientes'
+    },
+    {
+      texto:'Facturacion',
+      ruta:'/facturacion'
+    },
+    {
+      texto:'Vehiculos',
+      ruta:'/vehiculos'
+    }
+  ]
+
+  data:any="false";
   constructor(private sesion: Sesion, private router: Router) {}
 
   ngOnInit(): void {
@@ -43,7 +58,7 @@ export class CabeceraComponent implements OnInit {
   logout(){
     console.log("El señor de la noche")
     localStorage.clear()
-    this.data=null;
+    this.data="false";   
     this.router.navigateByUrl("/inicio")
   }
 }
