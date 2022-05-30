@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs';
-import { User } from '../interfaces/user';
+import { Cliente } from '../interfaces/user';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class SclienteService {
   constructor(private http: HttpClient) { }
 
     getAllClientes(){
-      return this.http.get<User[]>(environment.baseurl + 'cliente/users',
+      return this.http.get<Cliente[]>(environment.baseurl + 'cliente/users',
       {headers: this.httpHeaders})
    }
 }
