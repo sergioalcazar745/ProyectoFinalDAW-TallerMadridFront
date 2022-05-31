@@ -19,13 +19,16 @@ export class FacturacionComponent implements OnInit {
   ngOnInit(): void {
     this.serv.getGastosTotales().subscribe(
       data => {     
-          data.map(item=>{
+          /*data.map(item=>{
             this.gastos.push(item);
-          }) 
+          }) */
+          console.log(data);
+          this.gastos = data
           console.log("Estos son tus gastos ");
           console.log(this.gastos);
         },
         error => {
+          console.log("Alberto")
           console.log(error);
         }
     );
@@ -39,13 +42,15 @@ export class FacturacionComponent implements OnInit {
     //   console.log(this.arreglos);
     this.serv.getArreglosTotales().subscribe(
       data => {     
-          data.map(item=>{
+          /*data.map(item=>{
             this.arreglos.push(item);
-          }) 
+          })*/
+          this.arreglos = data
           console.log("Estos son tus arreglos ");
           console.log(this.arreglos);
         },
         error => {
+          console.log("Juan")
           console.log(error);
         }
     );

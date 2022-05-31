@@ -35,7 +35,7 @@ export class FacturacionService {
     return this.serv.get<Gasto[]>('http://127.0.0.1:8000/facturacion/gastos')
   }
 
-  getArreglosTotales():Observable<Arreglo[]>{
+  getArreglosTotales(){
     return this.serv.get<Arreglo[]>('http://127.0.0.1:8000/arreglo/arreglos')
   }
 

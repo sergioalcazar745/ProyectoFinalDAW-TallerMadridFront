@@ -12,9 +12,7 @@ export class ClientesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("NO ENTIENDO: " + localStorage.getItem("reload"))
     if(localStorage.getItem("reload") == "true"){
-      console.log("Por que")
       window.location.reload();
       localStorage.setItem("reload", "false")
     }

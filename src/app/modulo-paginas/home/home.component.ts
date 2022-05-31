@@ -13,6 +13,12 @@ export class HomeComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
+    console.log("pedro")
+    if(localStorage.getItem("reload") == "false"){
+      console.log("pedro")
+      localStorage.clear()
+      window.location.reload();
+    }
   }
 }
