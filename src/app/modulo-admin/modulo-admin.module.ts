@@ -5,8 +5,6 @@ import { VehiculosComponent } from './vehiculos/vehiculos.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-
 
 
 @NgModule({
@@ -17,9 +15,9 @@ import { BrowserModule } from '@angular/platform-browser';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
+    // AppRoutingModule,
     FormsModule,
-    // BrowserModule  // Para que funcione el for
+ 
   ], 
   exports: [
     FacturacionComponent,

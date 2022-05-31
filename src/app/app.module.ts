@@ -7,6 +7,7 @@ import { PagesModule } from './pages/pages.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ModuloEstaticosModule } from './modulo-estaticos/modulo-estaticos.module';
 import { ModuloPaginasModule } from './modulo-paginas/modulo-paginas.module';
+import { ModuloAdminModule } from './modulo-admin/modulo-admin.module';
 //import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 //import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
@@ -22,6 +23,7 @@ import { ModuloPaginasModule } from './modulo-paginas/modulo-paginas.module';
     HttpClientModule,
     ModuloEstaticosModule,
     ModuloPaginasModule,
+    ModuloAdminModule
    // FontAwesomeModule,
    // AngularFontAwesomeModule
   ],

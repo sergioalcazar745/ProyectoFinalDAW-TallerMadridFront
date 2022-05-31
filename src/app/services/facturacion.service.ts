@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Gastos } from '../interfaces/gasto';
-import { Gasto } from '../interfaces/gasto';
-import { Arreglo } from '../interfaces/arreglo';
+import { Arreglos, Gastos } from '../interfaces/facturacion';
+import { Gasto } from '../interfaces/facturacion';
+import { Arreglo } from '../interfaces/facturacion';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -11,14 +11,25 @@ import {Observable} from 'rxjs';
 export class FacturacionService {
   baseurl= "http:/localhost:8000";
   httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
+  arreglos:Arreglos[]=[]
+  gastos:Gastos[]=[]
 
   constructor(private serv:HttpClient) { }
 
-  getGastosPorFecha(){
+  getGastosPorFecha(inicio:Date,fin:Date){
     return this.serv.get<Gastos[]>
-    ('http://127.0.0.1:8000/facturacion/gastosPorFecha?inicio=2022-02-08&fin=2022-06-13',
+    ('http://127.0.0.1:8000/facturacion/gastosPorFecha?inicio='+inicio+'&fin='+fin,
     {headers: this.httpHeaders}
-    );
+    ).subscribe(
+      data => {
+        console.log("DATA DE GASTOS POR FECHA");
+        console.log(data);
+          //Aqui mapear los gastos y arreglos y append a las variables del servicio
+        },
+        error => {
+          console.log(error);
+        }
+    );;
   }
   getGastosTotales(){
     return this.serv.get<Gasto[]>('http://127.0.0.1:8000/facturacion/gastos')
@@ -26,5 +37,12 @@ export class FacturacionService {
 
   getArreglosTotales():Observable<Arreglo[]>{
     return this.serv.get<Arreglo[]>('http://127.0.0.1:8000/arreglo/arreglos')
+  }
+
+  getArreglos(){
+    return this.arreglos;
+  }
+  getGastos(){
+    return this.gastos;
   }
 }

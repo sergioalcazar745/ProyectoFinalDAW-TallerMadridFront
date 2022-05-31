@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Arreglo } from 'src/app/interfaces/arreglo';
-import { Gasto } from 'src/app/interfaces/gasto';
+import { Arreglo } from 'src/app/interfaces/facturacion';
+import { Gasto } from 'src/app/interfaces/facturacion';
 import { FacturacionService } from 'src/app/services/facturacion.service';
 
 @Component({
@@ -11,7 +11,9 @@ import { FacturacionService } from 'src/app/services/facturacion.service';
 export class FacturacionComponent implements OnInit {
   arreglos:Arreglo[]=[];
   gastos:Gasto[]=[];
-  displayStyle = "none";
+  mostrar=false;
+  inicio:Date=new Date();
+  fin:Date=new Date();
   constructor(private serv:FacturacionService) { }
 
   ngOnInit(): void {
@@ -35,8 +37,6 @@ export class FacturacionComponent implements OnInit {
     // });
     //   console.log("Esta es tu variable arreglos")
     //   console.log(this.arreglos);
-  
-
     this.serv.getArreglosTotales().subscribe(
       data => {     
           data.map(item=>{
@@ -54,6 +54,11 @@ export class FacturacionComponent implements OnInit {
     console.log(this.gastos);
 
 
+   }
+
+   crearGrafica(){
+     console.log(this.inicio);
+     this.serv.getGastosPorFecha(this.inicio,this.fin);
    }
 
 
