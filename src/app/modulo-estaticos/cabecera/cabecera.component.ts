@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Sesion } from 'src/app/services/sesion.service';
 
 @Component({
   selector: 'app-cabecera',
@@ -45,14 +44,13 @@ export class CabeceraComponent implements OnInit {
   ]
 
   data:any="false";
-  constructor(private sesion: Sesion, private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     console.log("data: " + this.data)
     if(localStorage.getItem("sesion") != null){
       this.data = localStorage.getItem("sesion")
     }      
-    console.log("EY: " + this.sesion.getData())
   }
 
   logout(){
