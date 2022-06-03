@@ -7,3 +7,11 @@ export interface Vehiculo {
   matricula: string;
   cliente: Cliente;
 }
+
+export interface VehiculoSimple {
+  marca: string;
+  modelo: string;
+  color: string;
+  matricula: string;
+  cliente: string;
+}

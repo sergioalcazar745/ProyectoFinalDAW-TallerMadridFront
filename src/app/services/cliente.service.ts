@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class SclienteService {
+export class ClienteService {
 
   httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
@@ -16,5 +16,9 @@ export class SclienteService {
     getAllClientes(){
       return this.http.get<Cliente[]>(environment.baseurl + 'cliente/users',
       {headers: this.httpHeaders})
-   }
+    }
+
+    getCliente(dni:string){
+      return this.http.get<Cliente>(environment.baseurl + 'cliente/user/',{ params: {dni: dni}})
+    }
 }

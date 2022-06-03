@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Vehiculo } from 'src/app/interfaces/vehiculo';
+import { VehiculoSimple } from 'src/app/interfaces/vehiculo';
 import { VehiculoService } from 'src/app/services/vehiculos.service';
 
 @Component({
@@ -9,7 +9,10 @@ import { VehiculoService } from 'src/app/services/vehiculos.service';
 })
 export class VehiculosComponent implements OnInit {
 
-  vehiculos:Vehiculo[]=[];
+  rows = [];
+  change = [];
+  vehiculoChange:VehiculoSimple;
+  columns = [{ name: 'Marca' }, { name: 'Modelo' }, { name: 'Color' }, { name: 'Matricula' }, { name: 'Cliente' }];
 
   constructor(private vehiculoService : VehiculoService) { }
 
@@ -20,11 +23,18 @@ export class VehiculosComponent implements OnInit {
   cargarVehiculos(){
     this.vehiculoService.getAllVehiculos().subscribe(
       data => {     
-        console.log("Datita: " + data)
-        this.vehiculos = data;
+        this.changeRows(data)
+        this.rows = this.change
       },error => {
         console.log(error);
       }
     );
+  }
+
+  changeRows(list){
+    for (const key in list) {
+      this.vehiculoChange = {cliente:list[key].cliente.dni, color:list[key].color, marca:list[key].marca, matricula:list[key].matricula, modelo:list[key].modelo}
+      this.change.push(this.vehiculoChange)
+    }
   }
 }

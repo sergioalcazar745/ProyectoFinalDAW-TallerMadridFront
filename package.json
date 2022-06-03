@@ -21,6 +21,7 @@
     "@fortawesome/angular-fontawesome": "^0.10.2",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@swimlane/ngx-datatable": "^20.0.0",
     "angular-font-awesome": "^3.1.2",
     "bootstrap-icons": "^1.8.2",
     "font-awesome": "^4.7.0",

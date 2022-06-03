@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
+import { ClienteService } from 'src/app/services/cliente.service';
 
 @Component({
   selector: 'app-clientes',
@@ -7,8 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientesComponent implements OnInit {
 
-  constructor() {
-    
+  rows = [];
+  columns = [{ name: 'Nombre' }, { name: 'Apellidos' }, { name: 'Email' }, { name: 'Telefono' }, { name: 'Calle' }, { name: 'DNI' }];
+
+  constructor(private clientesService: ClienteService) {
+    this.cargarClientes();
+  }
+
+  cargarClientes(){
+    this.clientesService.getAllClientes().subscribe(
+      data => {     
+        this.rows = data;
+      },error => {
+        console.log(error);
+      }
+    );
   }
 
   ngOnInit(): void {
