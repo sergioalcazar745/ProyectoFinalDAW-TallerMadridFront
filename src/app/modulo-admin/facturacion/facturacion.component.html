@@ -20,86 +20,8 @@
             </div>
         </div>
 
-        <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Fecha</th>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Vehiculo</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of gastos">
-                <td>{{item.fecha}}</td>
-                <td>{{item.concepto}}</td>
-                <td>{{item.usuario.email}}</td>
-                <td>{{item.importe}}</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Fecha</th>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Vehiculo</th>
-              </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let arr of arreglos">
-                    <td>{{arr.id}}</td>
-                    <td>{{arr.descripcion}}</td>
-                    <td>{{arr.fecha}}</td>
-                    <td>{{arr.precio}}</td>
-                </tr>
-            </tbody>
-          </table>
-
-        <!--<div class="col-lg-12">
-            <table class="table mt-4" id="tablaArreglos">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Fecha</th>
-                        <th>Descripcion</th>
-                        <th>Precio</th>
-                        <th>Vehiculo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item in arreglos">
-                        <td>{{item.id}}</td>
-                        <td>{{item.descripcion}}</td>
-                        <td>{{item.fecha}}</td>
-                        <td>{{arreglos[0].id}}</td>
-                        <td>{{item.precio}}</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <table class="table mt-5" id="tablaGastos">
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Usuario</th>
-                        <th>Concepto</th>
-                        <th>importe</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item in gastos; let i = index ">
-                        <td>{{item[i].fecha}}</td>
-                        <td>{{item[i].usuario.username}}</td>
-                        <td>{{item[i].comcepto}}</td>
-                        <td>{{item[i].importe}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>-->
+        <app-table [rows]="rows" [columns]="columns" (click)="onClickRow($event)" (filterKey)="filter($event)"></app-table>
+        <app-table [rows]="rows2" [columns]="columns2" (click)="onClickRow2($event)" (filterKey)="filter2($event)"></app-table>
 
 
     </div>
