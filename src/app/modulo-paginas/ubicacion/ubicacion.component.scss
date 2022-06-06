@@ -1,0 +1,22 @@
+.container {
+    position: relative;
+    padding-bottom: 75%; // Esta es la relación de aspecto
+    height: 0;
+    overflow: hidden;
+    box-shadow: 3px 3px 3px #b0b0b0;
+  }
+  .container iframe {
+    position: absolute;
+   // top: 0;
+
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  hr{
+    width: 10%;
+    margin-left: 45%;
+
+    
+}
