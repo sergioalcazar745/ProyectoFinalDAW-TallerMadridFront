@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { InicioSesionService } from 'src/app/services/inicioSesionService';
 
 @Component({
   selector: 'app-cabecera',
@@ -44,7 +45,7 @@ export class CabeceraComponent implements OnInit {
   ]
 
   data:any="false";
-  constructor(private router: Router) {}
+  constructor(private router: Router, private serv:InicioSesionService) {}
 
   ngOnInit(): void {
     console.log("data: " + this.data)
@@ -54,7 +55,8 @@ export class CabeceraComponent implements OnInit {
   }
 
   logout(){
-    console.log("El señor de la noche")
+    
+    this.serv.logout().subscribe(data=>{console.log(data)});
     localStorage.clear()
     this.data="false";   
     this.router.navigateByUrl("/inicio")

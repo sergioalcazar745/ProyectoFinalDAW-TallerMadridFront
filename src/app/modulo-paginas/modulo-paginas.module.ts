@@ -8,28 +8,29 @@ import { ServiciosComponent } from './servicios/servicios.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { FormsModule } from '@angular/forms';
+import { ModuloEstaticosModule } from '../modulo-estaticos/modulo-estaticos.module';
 
 
 
 @NgModule({
   declarations: [
-    AdminComponent,
     ContactoComponent,
     UbicacionComponent,
     HomeComponent,
     ServiciosComponent,
-    InicioSesionComponent
+    InicioSesionComponent,
+    
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   exports:[
-    AdminComponent,
     ContactoComponent,
     HomeComponent,
     ServiciosComponent,
+    UbicacionComponent,
+    InicioSesionComponent
   ]
 })
 export class ModuloPaginasModule { }
