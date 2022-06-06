@@ -13,6 +13,6 @@ export class InicioSesionService {
 
   getUsu(usuario:string, password:string){
     return this.http.post<Iadmin>(environment.baseurl+"administrador/login/",
-    {"usu":usuario,"password":password});
+    {"username":usuario,"password":password});
   }
 }

@@ -14,18 +14,36 @@ export class FacturacionComponent implements OnInit {
   mostrar=false;
   inicio:Date=new Date();
   fin:Date=new Date();
+  facturacion:Gasto;
+  arreglo:Arreglo;
+
+  // TABLA GASTOS
+  rows = [];
+  temp = [];
+  change = [];
+  columns = [{ name: 'Fecha' }, { name: 'Concepto' }, { name: 'Usuario' }, { name: 'Importe' }];
+  
+  
+  // TABLA ARREGLOS
+  rows2 = [];
+  temp2 = [];
+  change2 = [];
+  columns2 = [{ name: 'Id' }, { name: 'Fecha' }, { name: 'Descripcion' }, { name: 'Precio' },{ name: 'Vehiculo' }];
+
+
   constructor(private serv:FacturacionService) { }
 
   ngOnInit(): void {
     this.serv.getGastosTotales().subscribe(
       data => {     
-          /*data.map(item=>{
-            this.gastos.push(item);
-          }) */
-          console.log(data);
-          this.gastos = data
-          console.log("Estos son tus gastos ");
-          console.log(this.gastos);
+          this.changeRows(data)
+          this.temp = [...this.change]
+          this.rows = this.change;
+
+          // console.log(data);
+          // this.gastos = data
+          // console.log("Estos son tus gastos ");
+          // console.log(this.gastos);
         },
         error => {
           console.log("Alberto")
@@ -38,25 +56,21 @@ export class FacturacionComponent implements OnInit {
     // this.serv.getArreglosTotales().subscribe(e=>{
     //   e.forEach(z=>{this.arreglos.push(z)})
     // });
-    //   console.log("Esta es tu variable arreglos")
-    //   console.log(this.arreglos);
+
     this.serv.getArreglosTotales().subscribe(
       data => {     
-          /*data.map(item=>{
-            this.arreglos.push(item);
-          })*/
-          this.arreglos = data
-          console.log("Estos son tus arreglos ");
-          console.log(this.arreglos);
+         this.changeRows2(data)
+         this.temp2 = [...this.change2]
+         this.rows2 = this.change2;
+          // this.arreglos = data
+          // console.log("Estos son tus arreglos ");
+          // console.log(this.arreglos);
         },
         error => {
           console.log("Juan")
           console.log(error);
         }
     );
-
-    console.log("Gastos fuera");
-    console.log(this.gastos);
 
 
    }
@@ -65,6 +79,42 @@ export class FacturacionComponent implements OnInit {
      console.log(this.inicio);
      this.serv.getGastosPorFecha(this.inicio,this.fin);
    }
+
+   onClickRow($event){
+
+   }
+
+   filter(event){
+    const temp = this.temp.filter(function (d) {
+      return d.usuario.indexOf(event) !== -1 || !event;
+    });
+    this.rows = temp;
+   }
+
+   onClickRow2($event){
+    
+  }
+
+  filter2(event){
+    const temp2 = this.temp.filter(function (d) {
+      return d.vehiculo.indexOf(event) !== -1 || !event;
+    });
+    this.rows2 = temp2;
+  }
+
+   changeRows(list){
+    for (const key in list) {
+      this.facturacion = {concepto:list[key].concepto, fecha:list[key].fecha, importe:list[key].importe, usuario:list[key].usuario.username}
+      this.change.push(this.facturacion)
+    }
+  }
+
+  changeRows2(list){
+    for (const key in list) {
+      this.arreglo = {id:list[key].id, fecha:list[key].fecha, descripcion:list[key].descripcion, precio:list[key].precio,vehiculo:list[key].vehiculo.matricula}
+      this.change2.push(this.arreglo)
+    }
+  }
 
 
 
