@@ -12,7 +12,7 @@ import { AppRoutingModule } from '../app-routing.module';
     FooterComponent
   ],
   imports: [
-    CommonModule, AppRoutingModule
+    CommonModule,AppRoutingModule
   ],
   exports:[
     CabeceraComponent,

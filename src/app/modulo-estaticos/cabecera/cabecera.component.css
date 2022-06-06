@@ -5,17 +5,17 @@
 
 }
 
-.anchoCol{
+ .anchoCol{
     width: 80px;
-}
+} 
 
 nav img{
     width: 50px!important;
     height: 50px!important;
 }
 
-.navbar{
-    background: rgba(0,0,0,0.4)
+.color{
+    background: rgba(0,0,0,0.4)!important;
    /*background-color:transparent;*/
 }
 
