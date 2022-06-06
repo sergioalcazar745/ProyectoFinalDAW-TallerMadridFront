@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { VehiculoSimple } from 'src/app/interfaces/vehiculo';
 import { VehiculoService } from 'src/app/services/vehiculos.service';
 
@@ -11,10 +12,11 @@ export class VehiculosComponent implements OnInit {
 
   rows = [];
   change = [];
+  temp = [];
   vehiculoChange:VehiculoSimple;
   columns = [{ name: 'Marca' }, { name: 'Modelo' }, { name: 'Color' }, { name: 'Matricula' }, { name: 'Cliente' }];
 
-  constructor(private vehiculoService : VehiculoService) { }
+  constructor(private vehiculoService : VehiculoService, private router : Router) { }
 
   ngOnInit(): void {
     this.cargarVehiculos()
@@ -29,6 +31,18 @@ export class VehiculosComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  onClickRow(event){
+    console.log("EventoMatricula: " + event.matricula)
+    this.router.navigate(["/vehiculos-detalle/", event.matricula]);
+  }
+
+  filter(event){
+    const temp = this.temp.filter(function (d) {
+      return d.matricula.indexOf(event) !== -1 || !event;
+    });
+    this.rows = temp;
   }
 
   changeRows(list){

@@ -2,4 +2,9 @@
     <img src="../../../assets/img_services.png" class="img-fluid" alt="...">
 </div>
 
-<app-table [rows]="rows" [columns]="columns" [filter]="'dni'"></app-table>
+<app-table [rows]="rows" [columns]="columns" (click)="onClickRow($event)" (filterKey)="filter($event)"></app-table>
+<div class="container mb-3">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+        data-whatever="@mdo">Añadir cliente</button>
+    <app-modal-cliente (clickAdd)="add($event)"></app-modal-cliente>
+</div>

@@ -8,6 +8,7 @@ import { Vehiculo } from '../interfaces/vehiculo';
 })
 export class VehiculoService {
 
+  vehiculo
   httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
   constructor(private http: HttpClient) { }
 
@@ -15,6 +16,14 @@ export class VehiculoService {
     return this.http.get<Vehiculo[]>(environment.baseurl+"vehiculo/vehiculos");
   }
 
+  getVehiculo(matricula:string){
+    return this.http.get<Vehiculo>(environment.baseurl+"vehiculo/getvehiculo/", { params: {matricula: matricula}});
+  }
+
+  getVehiculoByDni(dni:string){
+    console.log("Dni: " + dni)
+    return this.http.get<Vehiculo[]>(environment.baseurl+"vehiculo/getvehiculobydni/", { params: {dni: dni}});
+  }
 
   /*getUsu(usuario:string, password:string){
     return this.http.post<Iadmin>(environment.baseurl+"administrador/login/",

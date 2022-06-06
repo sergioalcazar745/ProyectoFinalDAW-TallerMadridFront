@@ -17,6 +17,13 @@ export interface Arreglo {
   vehiculo: Vehiculo;
 }
 
+export interface ArregloSimple {
+  id?: number;
+  fecha: string;
+  descripcion: string;
+  precio: string;
+  vehiculo: string;
+}
 
 export interface Gastos {
   gastos: Mes[];

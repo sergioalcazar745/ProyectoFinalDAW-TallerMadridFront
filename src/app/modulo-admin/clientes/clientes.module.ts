@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { TableModule } from 'src/app/table/table.module';
 import { ClientesComponent } from './clientes.component';
 import { ClientesDetalleComponent } from './clientes-detalle/clientes-detalle.component';
+import { ModalsModule } from 'src/app/modals/modals.module';
+import { VehiculosModule } from '../vehiculos/vehiculos.module';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { ClientesDetalleComponent } from './clientes-detalle/clientes-detalle.co
   imports: [
     CommonModule,
     FormsModule,
-    TableModule
+    TableModule,
+    ModalsModule,
+    VehiculosModule
   ], 
   exports: [
     ClientesComponent,

@@ -10,6 +10,7 @@ import { ServiciosComponent } from './modulo-paginas/servicios/servicios.compone
 import { UbicacionComponent } from './modulo-paginas/ubicacion/ubicacion.component';
 import { ClientesComponent } from './modulo-admin/clientes/clientes.component';
 import { ClientesDetalleComponent } from './modulo-admin/clientes/clientes-detalle/clientes-detalle.component';
+import { VehiculosDetalleComponent } from './modulo-admin/vehiculos/vehiculos-detalle/vehiculos-detalle.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path:'clientes-detalle/:dni',
     component: ClientesDetalleComponent
+  },
+  {
+    path:'vehiculos-detalle/:matricula',
+    component: VehiculosDetalleComponent
   },
   {
     path:'**',

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {catchError, Observable} from 'rxjs';
 import { Cliente } from '../interfaces/user';
 import { environment } from 'src/environments/environment';
 
@@ -20,5 +20,10 @@ export class ClienteService {
 
     getCliente(dni:string){
       return this.http.get<Cliente>(environment.baseurl + 'cliente/user/',{ params: {dni: dni}})
+    }
+
+    setCliente(cliente:Cliente){
+      console.log("ClienteService: " + cliente)
+      return this.http.post<Cliente>(environment.baseurl + "cliente/signup/", cliente)
     }
 }

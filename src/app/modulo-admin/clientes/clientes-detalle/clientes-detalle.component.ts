@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/interfaces/user';
 import { ClienteService } from 'src/app/services/cliente.service';
+import { VehiculoService } from 'src/app/services/vehiculos.service';
 
 @Component({
   selector: 'app-clientes-detalle',
@@ -17,17 +18,36 @@ export class ClientesDetalleComponent implements OnInit {
   foto:string;
   telefono:string;
   calle:string;
+  dni:string;
 
-  constructor(private route: ActivatedRoute, private cilenteService : ClienteService) { }
+  rows = [];
+  temp = [];
+  columns = [{ name: 'Marca' }, { name: 'Modelo' }, { name: 'Color' }, { name: 'Matricula' }];
+  constructor(private route: ActivatedRoute, private cilenteService : ClienteService, private vehiculoService : VehiculoService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
-      console.log("parametros" + Object.values(param));
+      //console.log("parametros" + Object.values(param));
       this.cilenteService.getCliente(Object.values(param).toString()).subscribe((data) => {
         this.cliente = data;
-        this.cargarCliente()
+        this.cargarCliente();
+        this.cargarVehiculo();
       });
     });
+    
+  }
+
+  cargarVehiculo(){
+    this.vehiculoService.getVehiculoByDni(this.dni).subscribe((data) => {
+      console.log("DATA: " + data)
+      this.temp = [...data]
+      this.rows = data;
+    });
+  }
+
+  onClickRow(event){
+    console.log("EventoFila :" + event)
+    this.router.navigate(["/vehiculos-detalle/", event.matricula]);
   }
 
   cargarCliente(){
@@ -41,6 +61,14 @@ export class ClientesDetalleComponent implements OnInit {
     }    
     this.telefono = this.cliente.telefono;
     this.calle = this.cliente.calle;
+    this.dni = this.cliente.dni;
+  }
+
+  filter(event){
+    const temp = this.temp.filter(function (d) {
+      return d.matricula.indexOf(event) !== -1 || !event;
+    });
+    this.rows = temp;
   }
 
   delete(){
@@ -51,4 +79,7 @@ export class ClientesDetalleComponent implements OnInit {
 
   }
 
+  return(){
+    
+  }
 }

@@ -1,44 +1,55 @@
-<form class="container pt-5" style="height: 100vh">
+<form class="container pt-5">
     <div class="pt-5">
         <legend class="text-center mb-4">Datos de cliente</legend>
         <div class="row form-group my-3">
+            <label for="email" class="col-lg-3 col-md-12 col-form-label">DNI</label>
+            <div class="col-lg-9">
+                <input type="text" class="form-control" [(ngModel)]="dni" name="dni">
+            </div>
+        </div>
+        <div class="row form-group my-3">
             <label for="email" class="col-lg-3 col-md-12 col-form-label">Nombre</label>
             <div class="col-lg-9">
-                <input type="email" class="form-control" [(ngModel)]="nombre" name="nombre">
+                <input type="text" class="form-control" [(ngModel)]="nombre" name="nombre">
             </div>
         </div>
         <div class="row form-group my-3">
             <label for="email" class="col-lg-3 col-md-12 col-form-label">Apellidos</label>
             <div class="col-lg-9">
-                <input type="email" class="form-control" [(ngModel)]="apellidos" name="apellidos">
+                <input type="text" class="form-control" [(ngModel)]="apellidos" name="apellidos">
             </div>
         </div>
         <div class="row form-group my-3">
             <label for="email" class="col-lg-3 col-md-12 col-form-label">Email</label>
             <div class="col-lg-9">
-                <input type="email" class="form-control" [(ngModel)]="email" name="email">
+                <input type="text" class="form-control" [(ngModel)]="email" name="email">
             </div>
         </div>
         <div class="row form-group my-3">
             <label for="email" class="col-lg-3 col-md-12 col-form-label">Foto</label>
             <div class="col-lg-9">
-                <input type="email" class="form-control" [(ngModel)]="foto" name="foto">
+                <input type="text" class="form-control" [(ngModel)]="foto" name="foto">
             </div>
         </div>
         <div class="row form-group my-3">
             <label for="email" class="col-lg-3 col-md-12 col-form-label">Telefono</label>
             <div class="col-lg-9">
-                <input type="email" class="form-control" [(ngModel)]="telefono" name="telefono">
+                <input type="text" class="form-control" [(ngModel)]="telefono" name="telefono">
             </div>
         </div>
         <div class="row form-group my-3">
             <label for="email" class="col-lg-3 col-md-12 col-form-label">Calle</label>
             <div class="col-lg-9">
-                <input type="email" class="form-control" [(ngModel)]="calle" name="calle">
+                <input type="text" class="form-control" [(ngModel)]="calle" name="calle">
             </div>
         </div>
-        <div class="row form-group mt-4 d-flex justify-content-center">
-            <a href="" class="btn btn-success" (click)="edit()">Edit</a>
-        </div>                    
     </div>
 </form>
+<h2 class="text-center pt-3">Vehiculos - {{dni}}</h2>
+<app-table [rows]="rows" [columns]="columns" (click)="onClickRow($event)" (filterKey)="filter($event)"></app-table>
+<div class="container mb-3">
+    <a href="" class="btn btn-success mr-2" (click)="edit()">Editar</a>
+    <a href="" class="btn btn-danger mx-2" (click)="delete()">Eliminar</a>
+    <a href="" class="btn btn-primary mx-2" (click)="return()">Volver</a>
+</div>
+<!--<app-table [rows]="rows" [columns]="columns" (click)="onClickRow($event)" (filterKey)="filter($event)"></app-table>-->

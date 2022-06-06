@@ -8,8 +8,8 @@ import { ModuloEstaticosModule } from './modulo-estaticos/modulo-estaticos.modul
 import { ModuloPaginasModule } from './modulo-paginas/modulo-paginas.module';
 import { ModuloAdminModule } from './modulo-admin/modulo-admin.module';
 import { TableModule } from './table/table.module';
-//import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-//import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalsModule } from './modals/modals.module';
 
 
 @NgModule({
@@ -23,9 +23,9 @@ import { TableModule } from './table/table.module';
     ModuloEstaticosModule,
     ModuloPaginasModule,
     ModuloAdminModule,
-    TableModule
-   // FontAwesomeModule,
-   // AngularFontAwesomeModule
+    TableModule,
+    BrowserAnimationsModule,
+    ModalsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
