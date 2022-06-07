@@ -1,0 +1,21 @@
+<div class="container my-5">
+    <input
+      type="text"
+      style="padding:8px;margin:15px auto;width:30%;border: none;border-bottom: 1px solid black;margin-left: 35%;"
+      placeholder="Filtro"
+      (keyup)="updateFilter($event)"
+    />
+    <ngx-datatable
+      #table
+      (activate)="onActivate($event)"
+      class="material"
+      [columns]="columns"
+      [columnMode]="ColumnMode.force"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      rowHeight="auto"
+      [limit]="10"
+      [rows]="rows"
+    >
+    </ngx-datatable>
+  </div>

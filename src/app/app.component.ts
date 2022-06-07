@@ -1,6 +1,4 @@
-import { Component, Output, EventEmitter, ComponentFactoryResolver } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Sesion } from './services/sesion.service';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +8,5 @@ import { Sesion } from './services/sesion.service';
 export class AppComponent {
   title = 'TallerMadridFront';    
 
-  constructor(private sesion:Sesion){}
-
-  componentAdded($event: EventEmitter<any>) {
-    if($event.constructor.name == "InicioSesionComponent"){
-      this.sesion.setData(true)
-    }else{
-      this.sesion.setData(false)
-    }
-  }
+  constructor(){}
 }

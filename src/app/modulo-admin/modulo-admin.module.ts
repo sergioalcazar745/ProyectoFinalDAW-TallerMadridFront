@@ -2,27 +2,27 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FacturacionComponent } from './facturacion/facturacion.component';
 import { VehiculosComponent } from './vehiculos/vehiculos.component';
-import { ClientesComponent } from './clientes/clientes.component';
-import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule } from '@angular/forms';
-
+import { TableModule } from '../table/table.module';
+import { ClientesModule } from './clientes/clientes.module';
+import { VehiculosModule } from './vehiculos/vehiculos.module';
+//import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
   declarations: [
-    FacturacionComponent,
-    VehiculosComponent,
-    ClientesComponent
+    FacturacionComponent
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    FormsModule
+    //NgxDatatableModule,
+    FormsModule,
+    TableModule,
+    ClientesModule,
+    VehiculosModule
   ], 
   exports: [
-    FacturacionComponent,
-    VehiculosComponent,
-    ClientesComponent
+    FacturacionComponent
   ]
 })
 export class ModuloAdminModule { }

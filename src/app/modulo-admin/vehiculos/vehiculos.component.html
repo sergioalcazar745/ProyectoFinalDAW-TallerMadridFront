@@ -1,1 +1,28 @@
-<p>vehiculos works!</p>
+<div class="row">
+  <img src="../../../assets/img_vehiculos2.png" class="img-fluid" alt="...">
+</div>
+
+<app-table [rows]="rows" [columns]="columns" (click)="onClickRow($event)" (filterKey)="filter($event)"></app-table>
+
+<!--<div class="container my-5 py-5">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Marca</th>
+        <th scope="col">Modelo</th>
+        <th scope="col">Color</th>
+        <th scope="col">Matricula</th>
+        <th scope="col">Cliente</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of vehiculos">
+        <td>{{item.marca}}</td>
+        <td>{{item.modelo}}</td>
+        <td>{{item.color}}</td>
+        <td>{{item.matricula}}</td>
+        <td>{{item.cliente.dni}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>-->

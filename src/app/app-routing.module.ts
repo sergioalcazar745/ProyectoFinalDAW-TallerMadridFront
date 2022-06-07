@@ -9,13 +9,10 @@ import { InicioSesionComponent } from './modulo-paginas/inicio-sesion/inicio-ses
 import { ServiciosComponent } from './modulo-paginas/servicios/servicios.component';
 import { UbicacionComponent } from './modulo-paginas/ubicacion/ubicacion.component';
 import { ClientesComponent } from './modulo-admin/clientes/clientes.component';
-import { ClienteComponent } from './pages/cliente/cliente.component';
+import { ClientesDetalleComponent } from './modulo-admin/clientes/clientes-detalle/clientes-detalle.component';
+import { VehiculosDetalleComponent } from './modulo-admin/vehiculos/vehiculos-detalle/vehiculos-detalle.component';
 
 const routes: Routes = [
-  {
-    path: 'cliente',
-    component: ClienteComponent
-  },
   {
     path: 'inicio',
     component: HomeComponent
@@ -51,6 +48,14 @@ const routes: Routes = [
   {
     path:'vehiculos',
     component: VehiculosComponent
+  },
+  {
+    path:'clientes-detalle/:dni',
+    component: ClientesDetalleComponent
+  },
+  {
+    path:'vehiculos-detalle/:matricula',
+    component: VehiculosDetalleComponent
   },
   {
     path:'**',
