@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Vehiculo } from '../interfaces/vehiculo';
+import { Vehiculo, VehiculoSimple } from '../interfaces/vehiculo';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,21 @@ export class VehiculoService {
   getVehiculoByDni(dni:string){
     console.log("Dni: " + dni)
     return this.http.get<Vehiculo[]>(environment.baseurl+"vehiculo/getvehiculobydni/", { params: {dni: dni}});
+  }
+
+  saveVehiculo(vehiculo:VehiculoSimple){
+    console.log("VehiculoService: " + vehiculo)
+    return this.http.post<Vehiculo>(environment.baseurl+"vehiculo/savevehiculo/", vehiculo);
+  }
+
+  updateVehiculo(vehiculo:VehiculoSimple){
+    console.log("VehiculoService: " + vehiculo)
+    return this.http.put<Vehiculo>(environment.baseurl+"vehiculo/updatevehiculo/", vehiculo);
+  }
+
+  deleteVehiculo(matricula:string){
+    console.log("VehiculoService: " + matricula)
+    return this.http.get<Vehiculo>(environment.baseurl+"vehiculo/deletevehiculo/", {params:{matricula:matricula}});
   }
 
   /*getUsu(usuario:string, password:string){

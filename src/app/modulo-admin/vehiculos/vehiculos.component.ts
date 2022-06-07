@@ -14,6 +14,7 @@ export class VehiculosComponent implements OnInit {
   change = [];
   temp = [];
   vehiculoChange:VehiculoSimple;
+  vehiculo:VehiculoSimple;
   columns = [{ name: 'Marca' }, { name: 'Modelo' }, { name: 'Color' }, { name: 'Matricula' }, { name: 'Cliente' }];
 
   constructor(private vehiculoService : VehiculoService, private router : Router) { }
@@ -23,9 +24,13 @@ export class VehiculosComponent implements OnInit {
   }
 
   cargarVehiculos(){
+    this.rows = [];
+    this.change = [];
+    this.temp = [];
     this.vehiculoService.getAllVehiculos().subscribe(
       data => {     
         this.changeRows(data)
+        this.temp = [...this.change]
         this.rows = this.change
       },error => {
         console.log(error);
@@ -43,6 +48,15 @@ export class VehiculosComponent implements OnInit {
       return d.matricula.indexOf(event) !== -1 || !event;
     });
     this.rows = temp;
+  }
+
+  add(event){
+    this.vehiculo = event;
+    this.vehiculoService.saveVehiculo(this.vehiculo).subscribe(data =>{
+      console.log("DataVehiculo: " + data)
+    })
+    document.getElementById("close").click();
+    this.cargarVehiculos()
   }
 
   changeRows(list){
