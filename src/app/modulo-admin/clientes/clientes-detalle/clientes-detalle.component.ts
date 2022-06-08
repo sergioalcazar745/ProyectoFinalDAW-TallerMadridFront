@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/interfaces/user';
+import { VehiculoSimple } from 'src/app/interfaces/vehiculo';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { VehiculoService } from 'src/app/services/vehiculos.service';
 
@@ -12,6 +13,7 @@ import { VehiculoService } from 'src/app/services/vehiculos.service';
 export class ClientesDetalleComponent implements OnInit {
 
   cliente:Cliente;
+  clienteUpdate:Cliente;
   nombre:string;
   apellidos:string;
   email:string;
@@ -19,6 +21,8 @@ export class ClientesDetalleComponent implements OnInit {
   telefono:string;
   calle:string;
   dni:string;
+
+  vehiculo:VehiculoSimple;
 
   rows = [];
   temp = [];
@@ -33,11 +37,12 @@ export class ClientesDetalleComponent implements OnInit {
         this.cargarCliente();
         this.cargarVehiculo();
       });
-    });
-    
+    });    
   }
 
   cargarVehiculo(){
+    this.rows = [];
+    this.temp = [];
     this.vehiculoService.getVehiculoByDni(this.dni).subscribe((data) => {
       console.log("DATA: " + data)
       this.temp = [...data]
@@ -72,14 +77,35 @@ export class ClientesDetalleComponent implements OnInit {
   }
 
   delete(){
-
+    this.cilenteService.deleteCliente(this.dni).subscribe(data => {
+      console.log("DataDelete: " + Object.values(data))
+    })
+    this.router.navigateByUrl("/clientes")
   }
 
   edit(){
+    if(this.foto = "Ninguna"){
+      this.clienteUpdate = {nombre:this.nombre, apellidos:this.apellidos, calle:this.calle, dni:this.dni, email:this.email, foto:null, telefono:this.telefono}
+    }else{
+      this.clienteUpdate = {nombre:this.nombre, apellidos:this.apellidos, calle:this.calle, dni:this.dni, email:this.email, foto:this.foto, telefono:this.telefono}
+    }
+    this.cilenteService.updateCliente(this.clienteUpdate).subscribe(data =>{
+      console.log("DatitaUpdate: " + Object.values(data))
+    })
+    this.router.navigateByUrl("/clientes")
+  }
 
+  add(event){
+    this.vehiculo = event;
+    this.vehiculo.cliente = this.dni;
+    this.vehiculoService.saveVehiculo(this.vehiculo).subscribe(data =>{
+      console.log("DataVehiculo: " + Object.values(data))
+    })
+    document.getElementById("close").click();
+    window.location.reload();
   }
 
   return(){
-    
+    this.router.navigateByUrl("/clientes")
   }
 }

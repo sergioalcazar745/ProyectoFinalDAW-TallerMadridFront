@@ -26,4 +26,14 @@ export class ClienteService {
       console.log("ClienteService: " + cliente)
       return this.http.post<Cliente>(environment.baseurl + "cliente/signup/", cliente)
     }
+
+    updateCliente(cliente:Cliente){
+      console.log("ClienteService: " + cliente)
+      return this.http.put<Cliente>(environment.baseurl + "cliente/modificar/", cliente)
+    }
+
+    deleteCliente(dni:string){
+      console.log("DniCliente: " + dni)
+      return this.http.delete<Cliente>(environment.baseurl + "cliente/borrar", {params: {dni: dni}})
+    }
 }

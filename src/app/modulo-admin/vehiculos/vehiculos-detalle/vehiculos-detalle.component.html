@@ -41,10 +41,10 @@
 
     <div class="mb-3">
         <a href="" class="btn btn-warning mx-2" (click)="edit()">Edit</a>
-        <a href="" class="btn btn-danger mx-2" (click)="edit()">Eliminar</a>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+        <a href="" class="btn btn-danger mx-2" (click)="delete()">Eliminar</a>
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal"
         data-whatever="@mdo">Añadir arreglo</button>
-        <a href="" class="btn btn-primary mx-2" (click)="edit()">Volver</a>
+        <a href="" class="btn btn-primary mx-2" (click)="return()">Volver</a>
     </div>
     
     <app-modal-arreglo (clickAdd)="add($event)"></app-modal-arreglo>    

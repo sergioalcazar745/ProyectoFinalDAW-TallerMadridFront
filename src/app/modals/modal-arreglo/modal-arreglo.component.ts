@@ -27,8 +27,8 @@ export class ModalArregloComponent implements OnInit {
       this.error = "Por favor introduzca todos los campos";
     }else{
       this.arreglo = {fecha:this.fecha, descripcion:this.descripcion, precio:this.precio, vehiculo: ""}
-      this.clickAdd.emit(this.arreglo);  
     }    
+    this.clickAdd.emit(this.arreglo)
   }
 
   checkDNI(dni) : boolean {

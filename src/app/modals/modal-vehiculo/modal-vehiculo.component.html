@@ -1,0 +1,42 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Añadir vehiculo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <p class="alert alert-danger" *ngIf="error">{{error}}</p>
+                    <div class="form-group">
+                        <label for="marca" class="col-form-label">Marca:</label>
+                        <input type="text" class="form-control" name="marca" [(ngModel)]="marca">
+                    </div>
+                    <div class="form-group">
+                        <label for="modelo" class="col-form-label">Modelo:</label>
+                        <input type="text" class="form-control" name="modelo" [(ngModel)]="modelo">
+                    </div>
+                    <div class="form-group">
+                        <label for="color" class="col-form-label">Color:</label>
+                        <input type="text" class="form-control" name="color" [(ngModel)]="color">
+                    </div>
+                    <div class="form-group">
+                        <label for="matricula" class="col-form-label">Matricula:</label>
+                        <input type="text" class="form-control" name="matricula" [(ngModel)]="matricula">
+                    </div>
+                    <div class="form-group" *ngIf="tipo == 'general'">
+                        <label for="cliente" class="col-form-label">Cliente:</label>
+                        <input type="text" class="form-control" name="cliente" [(ngModel)]="cliente">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="add()">Añadir</button>
+            </div>
+        </div>
+    </div>
+</div>

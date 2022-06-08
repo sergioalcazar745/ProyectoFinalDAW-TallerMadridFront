@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Arreglo } from 'src/app/interfaces/facturacion';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ArregloSimple } from 'src/app/interfaces/facturacion';
 import { VehiculoSimple } from 'src/app/interfaces/vehiculo';
 import { ArreglosService } from 'src/app/services/arreglos.service';
 import { VehiculoService } from 'src/app/services/vehiculos.service';
@@ -12,19 +12,20 @@ import { VehiculoService } from 'src/app/services/vehiculos.service';
 })
 export class VehiculosDetalleComponent implements OnInit {
 
-  marca:string;
-  modelo:string;
-  color:string;
-  matricula:string;
-  cliente:string;
+  marca:string = "";
+  modelo:string = "";
+  color:string = "";
+  matricula:string = "";
+  cliente:string = "";
+  vehiculo:VehiculoSimple;
   
-  arreglo:Arreglo;
+  arreglo:ArregloSimple;
 
   rows = [];
   temp = [];
   columns = [{ name: 'Fecha' }, { name: 'Descripcion' }, { name: 'Precio' }];
 
-  constructor(private route : ActivatedRoute, private vehiculoService : VehiculoService, private arregloService : ArreglosService) { }
+  constructor(private route : ActivatedRoute, private vehiculoService : VehiculoService, private arregloService : ArreglosService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
@@ -46,6 +47,8 @@ export class VehiculosDetalleComponent implements OnInit {
   }
 
   cargarArreglos(){
+    this.rows = [];
+    this.temp = [];
     this.arregloService.getArregloByMatricula(this.matricula).subscribe((data) => {
       console.log(data)
       this.temp = [...data];
@@ -54,11 +57,23 @@ export class VehiculosDetalleComponent implements OnInit {
   }
 
   delete(){
-
+    this.vehiculoService.deleteVehiculo(this.matricula).subscribe(data=>{
+      console.log("DatitaDelete" + Object.values(data))
+    })
   }
 
   edit(){
+    /*if(this.marca == "" || this.modelo == "" || this.color == "" || this.matricula == "" || this.cliente == ""){
+      
+    }*/
+    this.vehiculo = {cliente:this.cliente, color:this.color, marca:this.marca, matricula:this.matricula, modelo:this.modelo}
+    this.vehiculoService.updateVehiculo(this.vehiculo).subscribe(data => {
+      console.log("DatitaUpdate" + Object.values(data))
+    })
+  }
 
+  return(){
+    this.router.navigateByUrl("/vehiculos")
   }
 
   onClickRow(event){
@@ -66,7 +81,13 @@ export class VehiculosDetalleComponent implements OnInit {
   }
   
   add(event){
-
+    this.arreglo=event;
+    this.arreglo.vehiculo = this.matricula;
+    this.arregloService.saveArreglo(this.arreglo).subscribe(data=>{
+      console.log("DatitaSaveArreglo: " + data)
+    })
+    document.getElementById("close").click();
+    this.cargarArreglos()
   }
 
   filter(event){

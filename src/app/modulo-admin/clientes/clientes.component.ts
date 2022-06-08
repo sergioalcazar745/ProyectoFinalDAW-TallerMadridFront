@@ -21,6 +21,8 @@ export class ClientesComponent implements OnInit {
   }
 
   cargarClientes(){
+    this.rows = [];
+    this.temp = [];
     this.clientesService.getAllClientes().subscribe(
       data => {     
         this.temp = [...data];
@@ -49,6 +51,8 @@ export class ClientesComponent implements OnInit {
     this.clientesService.setCliente(this.cliente).subscribe((data) =>{
       console.log("DataDevuelta: " + Object.values(data))
     })
+    document.getElementById("close").click();
+    window.location.reload();
   }
 
   ngOnInit(): void {

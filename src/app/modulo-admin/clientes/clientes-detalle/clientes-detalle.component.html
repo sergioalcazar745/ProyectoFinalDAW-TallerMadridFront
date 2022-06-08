@@ -48,8 +48,10 @@
 <h2 class="text-center pt-3">Vehiculos - {{dni}}</h2>
 <app-table [rows]="rows" [columns]="columns" (click)="onClickRow($event)" (filterKey)="filter($event)"></app-table>
 <div class="container mb-3">
-    <a href="" class="btn btn-success mr-2" (click)="edit()">Editar</a>
+    <a href="" class="btn btn-warning mr-2" (click)="edit()">Editar</a>
     <a href="" class="btn btn-danger mx-2" (click)="delete()">Eliminar</a>
+    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Añadir vehiculo</button>
     <a href="" class="btn btn-primary mx-2" (click)="return()">Volver</a>
 </div>
+<app-modal-vehiculo (clickAdd)="add($event)" [tipo] = "'cliente'"></app-modal-vehiculo>
 <!--<app-table [rows]="rows" [columns]="columns" (click)="onClickRow($event)" (filterKey)="filter($event)"></app-table>-->

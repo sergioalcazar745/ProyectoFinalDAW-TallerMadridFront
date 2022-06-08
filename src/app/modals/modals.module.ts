@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ModalClienteComponent } from './modal-cliente/modal-cliente.component';
 import { FormsModule } from '@angular/forms';
 import { ModalArregloComponent } from './modal-arreglo/modal-arreglo.component';
+import { ModalVehiculoComponent } from './modal-vehiculo/modal-vehiculo.component';
 
 @NgModule({
   declarations: [
     ModalClienteComponent,
-    ModalArregloComponent
+    ModalArregloComponent,
+    ModalVehiculoComponent
   ],
   imports: [
     CommonModule,
@@ -15,7 +17,8 @@ import { ModalArregloComponent } from './modal-arreglo/modal-arreglo.component';
   ], 
   exports: [
     ModalClienteComponent,
-    ModalArregloComponent
+    ModalArregloComponent,
+    ModalVehiculoComponent
   ]
 })
 export class ModalsModule { }
