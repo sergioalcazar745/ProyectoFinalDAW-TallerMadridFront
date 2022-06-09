@@ -6,6 +6,7 @@ import { TableModule } from '../table/table.module';
 import { ClientesModule } from './clientes/clientes.module';
 import { VehiculosModule } from './vehiculos/vehiculos.module';
 import { ArregloModule } from './arreglo/arreglo.module';
+import { ModalsModule } from '../modals/modals.module';
 //import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
@@ -20,7 +21,8 @@ import { ArregloModule } from './arreglo/arreglo.module';
     TableModule,
     ClientesModule,
     VehiculosModule,
-    ArregloModule
+    ArregloModule,
+    ModalsModule
   ], 
   exports: [
     FacturacionComponent

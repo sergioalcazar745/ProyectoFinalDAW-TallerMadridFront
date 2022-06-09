@@ -40,6 +40,13 @@ export interface Gasto {
   importe: string;
 }
 
+export interface GastoSimple {
+  fecha: string;
+  usuario: string;
+  concepto: string;
+  importe: string;
+}
+
 export interface Usuario {
   email: string;
   username: string;
