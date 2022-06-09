@@ -52,7 +52,7 @@ export class ClientesComponent implements OnInit {
       console.log("DataDevuelta: " + Object.values(data))
     })
     document.getElementById("close").click();
-    window.location.reload();
+    this.cargarClientes()
   }
 
   ngOnInit(): void {

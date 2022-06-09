@@ -16,6 +16,14 @@ export class ArreglosService {
     return this.http.get<Arreglo[]>(environment.baseurl+"arreglo/getarreglobymatricula/", { params: {matricula: matricula}});
   }
 
+  getArregloById(id:number){
+    return this.http.get<Arreglo>(environment.baseurl+"arreglo/getarreglobyid/", { params: {id: id}});
+  }
+
+  getArreglos(){
+    return this.http.get<Arreglo[]>(environment.baseurl+"arreglo/arreglos");
+  }
+
   saveArreglo(arreglo:ArregloSimple){
     return this.http.post<Arreglo>(environment.baseurl+"arreglo/savearreglo/", arreglo);
   }

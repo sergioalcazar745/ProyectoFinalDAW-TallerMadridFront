@@ -4,12 +4,16 @@ import { ModalClienteComponent } from './modal-cliente/modal-cliente.component';
 import { FormsModule } from '@angular/forms';
 import { ModalArregloComponent } from './modal-arreglo/modal-arreglo.component';
 import { ModalVehiculoComponent } from './modal-vehiculo/modal-vehiculo.component';
+import { ModalConfirmacionComponent } from './modal-confirmacion/modal-confirmacion.component';
+import { ModalErrorComponent } from './modal-error/modal-error.component';
 
 @NgModule({
   declarations: [
     ModalClienteComponent,
     ModalArregloComponent,
-    ModalVehiculoComponent
+    ModalVehiculoComponent,
+    ModalConfirmacionComponent,
+    ModalErrorComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +22,8 @@ import { ModalVehiculoComponent } from './modal-vehiculo/modal-vehiculo.componen
   exports: [
     ModalClienteComponent,
     ModalArregloComponent,
-    ModalVehiculoComponent
+    ModalVehiculoComponent,
+    ModalConfirmacionComponent
   ]
 })
 export class ModalsModule { }

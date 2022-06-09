@@ -1,0 +1,35 @@
+<form class="container pt-5">
+    <div class="pt-5">
+        <legend class="text-center mb-4">Datos del arreglo</legend>
+        <div class="row form-group my-3">
+            <label for="fecha" class="col-lg-3 col-md-12 col-form-label">Fecha</label>
+            <div class="col-lg-9">
+                <input type="date" class="form-control" [(ngModel)]="fecha" name="fecha">
+            </div>
+        </div>
+        <div class="row form-group my-3">
+            <label for="descripcion" class="col-lg-3 col-md-12 col-form-label">Descripcion</label>
+            <div class="col-lg-9">
+                <input type="text" class="form-control" [(ngModel)]="descripcion" name="descripcion">
+            </div>
+        </div>
+        <div class="row form-group my-3">
+            <label for="precio" class="col-lg-3 col-md-12 col-form-label">Precio</label>
+            <div class="col-lg-9">
+                <input type="text" class="form-control" [(ngModel)]="precio" name="precio">
+            </div>
+        </div>
+        <div class="row form-group my-3">
+            <label for="vehiculo" class="col-lg-3 col-md-12 col-form-label">Vehiculo</label>
+            <div class="col-lg-9">
+                <input type="text" class="form-control" [(ngModel)]="vehiculo" name="vehiculo">
+            </div>
+        </div>
+    </div>
+</form>
+<div class="container mb-3">
+    <a class="btn btn-warning" style="margin-right:15px;">Edit</a>
+    <button type="button" style="margin-left: 15px;" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Eliminar</button>
+    <a class="btn btn-primary" style="margin-left:15px;">Volver</a>
+</div>
+<app-modal-confirmacion (clickAdd)="delete()" [title]="title"></app-modal-confirmacion>
