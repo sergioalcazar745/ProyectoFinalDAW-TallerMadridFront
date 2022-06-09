@@ -25,6 +25,7 @@ export class VehiculosDetalleComponent implements OnInit {
   temp = [];
   columns = [{ name: 'Fecha' }, { name: 'Descripcion' }, { name: 'Precio' }];
 
+  title:string = "¿Estas seguro de eliminar este vehiculo?";
   constructor(private route : ActivatedRoute, private vehiculoService : VehiculoService, private arregloService : ArreglosService, private router: Router) { }
 
   ngOnInit(): void {
@@ -60,6 +61,8 @@ export class VehiculosDetalleComponent implements OnInit {
     this.vehiculoService.deleteVehiculo(this.matricula).subscribe(data=>{
       console.log("DatitaDelete" + Object.values(data))
     })
+    document.getElementById("close").click();
+    //this.router.navigateByUrl("/vehiculos")
   }
 
   edit(){
@@ -77,7 +80,7 @@ export class VehiculosDetalleComponent implements OnInit {
   }
 
   onClickRow(event){
-
+    this.router.navigate(["/arreglo-detalle/", event.id]);
   }
   
   add(event){

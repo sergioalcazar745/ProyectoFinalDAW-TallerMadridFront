@@ -24,6 +24,8 @@ export class ClientesDetalleComponent implements OnInit {
 
   vehiculo:VehiculoSimple;
 
+  title:string="¿Estas seguro de eliminar este cliente?";
+
   rows = [];
   temp = [];
   columns = [{ name: 'Marca' }, { name: 'Modelo' }, { name: 'Color' }, { name: 'Matricula' }];
@@ -80,6 +82,7 @@ export class ClientesDetalleComponent implements OnInit {
     this.cilenteService.deleteCliente(this.dni).subscribe(data => {
       console.log("DataDelete: " + Object.values(data))
     })
+    document.getElementById("close").click()
     this.router.navigateByUrl("/clientes")
   }
 

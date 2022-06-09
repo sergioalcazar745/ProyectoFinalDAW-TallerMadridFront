@@ -12,10 +12,6 @@ export class CabeceraComponent implements OnInit {
 
   opciones:any=[
     {
-      texto:'Administracion',
-      ruta:'/admin'
-    },
-    {
       texto:'Nuestros servicios',
       ruta:'/servicios'
     },
@@ -41,6 +37,10 @@ export class CabeceraComponent implements OnInit {
     {
       texto:'Vehiculos',
       ruta:'/vehiculos'
+    },
+    {
+      texto:'Arreglos',
+      ruta:'/arreglos'
     }
   ]
 
@@ -54,10 +54,11 @@ export class CabeceraComponent implements OnInit {
     }      
   }
 
-  logout(){
-    
+  logout(){    
     this.serv.logout().subscribe(data=>{console.log(data)});
-    localStorage.clear()
+    localStorage.setItem("sesion", "false")
+    localStorage.setItem("reload", "true")
+    localStorage.setItem("token", "")
     this.data="false";   
     this.router.navigateByUrl("/inicio")
   }

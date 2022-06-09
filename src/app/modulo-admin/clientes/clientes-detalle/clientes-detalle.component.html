@@ -48,10 +48,11 @@
 <h2 class="text-center pt-3">Vehiculos - {{dni}}</h2>
 <app-table [rows]="rows" [columns]="columns" (click)="onClickRow($event)" (filterKey)="filter($event)"></app-table>
 <div class="container mb-3">
-    <a href="" class="btn btn-warning mr-2" (click)="edit()">Editar</a>
-    <a href="" class="btn btn-danger mx-2" (click)="delete()">Eliminar</a>
-    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Añadir vehiculo</button>
-    <a href="" class="btn btn-primary mx-2" (click)="return()">Volver</a>
+    <a href="" class="btn btn-warning" (click)="edit()">Editar</a>
+    <button type="button" style="margin-left: 15px;" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Eliminar</button>
+    <button type="button" style="margin-left: 15px;" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Añadir vehiculo</button>
+    <a href="" class="btn btn-primary" style="margin-left: 15px;" (click)="return()" routerLink="/clientes" routerLinkActive="router-link-active" >Volver</a>
 </div>
 <app-modal-vehiculo (clickAdd)="add($event)" [tipo] = "'cliente'"></app-modal-vehiculo>
+<app-modal-confirmacion (clickAdd)="delete()" [title]="title"></app-modal-confirmacion>
 <!--<app-table [rows]="rows" [columns]="columns" (click)="onClickRow($event)" (filterKey)="filter($event)"></app-table>-->

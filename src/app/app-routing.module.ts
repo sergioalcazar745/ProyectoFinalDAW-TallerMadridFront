@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FacturacionComponent } from './modulo-admin/facturacion/facturacion.component';
 import { VehiculosComponent } from './modulo-admin/vehiculos/vehiculos.component';
-import { AdminComponent } from './modulo-paginas/admin/admin.component';
 import { ContactoComponent } from './modulo-paginas/contacto/contacto.component';
 import { HomeComponent } from './modulo-paginas/home/home.component';
 import { InicioSesionComponent } from './modulo-paginas/inicio-sesion/inicio-sesion.component';
@@ -11,6 +10,8 @@ import { UbicacionComponent } from './modulo-paginas/ubicacion/ubicacion.compone
 import { ClientesComponent } from './modulo-admin/clientes/clientes.component';
 import { ClientesDetalleComponent } from './modulo-admin/clientes/clientes-detalle/clientes-detalle.component';
 import { VehiculosDetalleComponent } from './modulo-admin/vehiculos/vehiculos-detalle/vehiculos-detalle.component';
+import { ArregloComponent } from './modulo-admin/arreglo/arreglo.component';
+import { ArregloDetalleComponent } from './modulo-admin/arreglo/arreglo-detalle/arreglo-detalle.component';
 
 const routes: Routes = [
   {
@@ -24,10 +25,6 @@ const routes: Routes = [
   {
     path:'ubicacion',
     component: UbicacionComponent
-  },
-  {
-    path:'admin',
-    component: AdminComponent
   },
   {
     path:'servicios',
@@ -48,6 +45,14 @@ const routes: Routes = [
   {
     path:'vehiculos',
     component: VehiculosComponent
+  },
+  {
+    path:'arreglos',
+    component: ArregloComponent
+  },
+  {
+    path:'arreglo-detalle/:id',
+    component: ArregloDetalleComponent
   },
   {
     path:'clientes-detalle/:dni',

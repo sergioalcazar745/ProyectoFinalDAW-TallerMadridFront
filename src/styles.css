@@ -5,7 +5,7 @@
 @import '~@swimlane/ngx-datatable/themes/material.css';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
 body{
-   /* font-family: 'Lato',sans-serif;*/
+   /* font-family: 'Lato',sans-serif; */
    font-family: 'Montserrat', sans-serif;
    overflow-y: scroll;
    overflow-x: hidden;

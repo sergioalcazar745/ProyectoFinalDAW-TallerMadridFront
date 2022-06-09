@@ -41,7 +41,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse  justify-content-end " id="navbarNav">
-      <ul class="navbar-nav " *ngIf="data == 'false'">
+      <ul class="navbar-nav" *ngIf="data == 'false'">
         <li class="nav-item " *ngFor="let op of opciones">
           <a class="nav-link active" aria-current="page" [routerLink]='op.ruta'>{{op.texto}}</a>
         </li>
