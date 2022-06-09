@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Arreglo } from 'src/app/interfaces/facturacion';
+import { Arreglo, GastoSimple } from 'src/app/interfaces/facturacion';
 import { Gasto } from 'src/app/interfaces/facturacion';
 import { FacturacionService } from 'src/app/services/facturacion.service';
 
@@ -16,6 +16,8 @@ export class FacturacionComponent implements OnInit {
   fin:Date=new Date();
   facturacion:Gasto;
   arreglo:Arreglo;
+  datosModal:GastoSimple;
+  cont:number=0;
 
   // TABLA GASTOS
   rows = [];
@@ -28,7 +30,15 @@ export class FacturacionComponent implements OnInit {
   rows2 = [];
   temp2 = [];
   change2 = [];
-  columns2 = [{ name: 'Id' }, { name: 'Fecha' }, { name: 'Descripcion' }, { name: 'Precio' },{ name: 'Vehiculo' }];
+  columns2 = [{ name: 'Id' }, { name: 'Fecha' }, { name: 'Descripcion' }, { name: 'Precio' },{ name: 'Vehiculo'  }];
+
+
+  //MODAL
+  fecha:string="";
+  concepto:string="";
+  importe:string="";
+  usuario:string="";
+
 
 
   constructor(private serv:FacturacionService) { }
@@ -80,8 +90,29 @@ export class FacturacionComponent implements OnInit {
      this.serv.getGastosPorFecha(this.inicio,this.fin);
    }
 
-   onClickRow($event){
-
+   onClickRow(event){
+     
+     if (this.cont==0){
+      this.datosModal=event;
+      this.fecha=this.datosModal.fecha;
+      this.concepto=this.datosModal.concepto;
+      this.importe=this.datosModal.importe;
+      this.usuario=this.datosModal.usuario;
+      document.getElementById('botonModal').click()
+      this.cont++;
+     }
+     else{
+       this.cont=0;
+     }
+  
+    // console.log("variable datos------" + Object.values(this.datosModal));
+    console.log("event")
+    // if(event==true){}
+    // else{
+    // console.log("FECHA ---------"+this.fecha)
+    // console.log(event);
+    // if(this.datosModal!=undefined)
+    // 
    }
 
    filter(event){
@@ -91,8 +122,9 @@ export class FacturacionComponent implements OnInit {
     this.rows = temp;
    }
 
-   onClickRow2($event){
-    
+   onClickRow2(event){
+    // if(event.fecha!=undefined)
+    // document.getElementById('botonModal2').click()
   }
 
   filter2(event){
