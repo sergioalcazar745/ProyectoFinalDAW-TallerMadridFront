@@ -12,7 +12,7 @@ export class TableComponent implements OnInit {
   @Input() rows = [];
   //columns = [{ name: 'Nombre' }, { name: 'Apellidos' }, { name: 'Email' }, { name: 'Telefono' }, { name: 'Calle' }, { name: 'DNI' }];
   @Input() columns = [];
-  @Output() click = new EventEmitter();
+  @Output() clickfila = new EventEmitter();
   @Output() filterKey = new EventEmitter();
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
@@ -28,7 +28,7 @@ export class TableComponent implements OnInit {
 
   onActivate(event) {
     if(event.type == 'click') {
-      this.click.emit(event.row)
+      this.clickfila.emit(event.row)
     }
   }
 

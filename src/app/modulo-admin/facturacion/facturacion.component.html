@@ -20,8 +20,8 @@
             </div>
         </div>
 
-        <app-table [rows]="rows" [columns]="columns" (click)="onClickRow(this)" (filterKey)="filter($event)"></app-table>
-        <app-table [rows]="rows2" [columns]="columns2" (click)="onClickRow2(this)" (filterKey)="filter2($event)"></app-table>
+        <app-table [rows]="rows" [columns]="columns" (clickfila)="onClickRow($event)"(filterKey)="filter($event)"></app-table>
+        <app-table [rows]="rows2" [columns]="columns2" (clickfila)="onClickRow2($event)" (filterKey)="filter2($event)"></app-table>
 
         <button type="button" id="botonModal" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
         data-whatever="@mdo">Añadir cliente</button>
@@ -61,7 +61,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Cerrar</button> -->
+                <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" >Modificar</button>
                 <button type="button" class="btn btn-primary" >Crear Factura</button>
             </div>
