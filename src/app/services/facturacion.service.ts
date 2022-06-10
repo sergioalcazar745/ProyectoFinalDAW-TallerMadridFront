@@ -48,6 +48,6 @@ export class FacturacionService {
 
   mandarCorreo(nombre:string,apellidos:string,mail:string,tfn:string,vehiculo:string,motivo:string){
     return this.serv.post('http://127.0.0.1:8000/cliente/formularioContacto/',
-    {"nombre":nombre,"apellidos":apellidos,"mail":mail,"tfn":tfn,"vehiculo":vehiculo,"motivo":motivo}).subscribe();
+    {"nombre":nombre,"apellidos":apellidos,"mail":mail,"tfn":tfn,"vehiculo":vehiculo,"motivo":motivo}).subscribe()
   }
 }

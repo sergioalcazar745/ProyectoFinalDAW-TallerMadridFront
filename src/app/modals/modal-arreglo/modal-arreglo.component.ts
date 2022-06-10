@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ArregloSimple } from 'src/app/interfaces/facturacion';
+import { ArregloSimple, GastoSimple } from 'src/app/interfaces/facturacion';
+
 
 @Component({
   selector: 'app-modal-arreglo',
