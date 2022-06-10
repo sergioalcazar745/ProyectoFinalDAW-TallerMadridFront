@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Arreglos, Gastos } from '../interfaces/facturacion';
+import { Arreglos, Gastos, grafica } from '../interfaces/facturacion';
 import { Gasto } from '../interfaces/facturacion';
 import { Arreglo } from '../interfaces/facturacion';
 import {Observable} from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,22 +12,22 @@ import {Observable} from 'rxjs';
 export class FacturacionService {
   baseurl= "http:/localhost:8000";
   httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
-  arreglos:Arreglos[]=[]
-  gastos:Gastos[]=[]
+  arreglos:Arreglo[]=[]
+  gastos:Gasto[]=[]
 
-  constructor(private serv:HttpClient) { }
+  constructor(private serv:HttpClient, private router: Router) { }
 
   getGastosPorFecha(inicio:Date,fin:Date){
-    return this.serv.get<Gastos[]>
+    return this.serv.get<grafica>
     ('http://127.0.0.1:8000/facturacion/gastosPorFecha?inicio='+inicio+'&fin='+fin,
     {headers: this.httpHeaders}
     ).subscribe(
       data => {
-        console.log("DATA DE GASTOS POR FECHA");
-        console.log(data);
-        data['arreglos']['05'].forEach((valor,clave)=> {
-          console.log(`la clave es :${clave} y el valor asociado es ${valor}`);
-      })
+        data['arreglos'].map(a=>{this.arreglos.push(a)})
+        data['gastos'].map(a=>{this.gastos.push(a)})
+        this.router.navigateByUrl("/grafica")
+        console.log(this.arreglos)
+        console.log(this.gastos)
         },
         error => {
           console.log(error);

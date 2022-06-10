@@ -7,12 +7,14 @@ import { ClientesModule } from './clientes/clientes.module';
 import { VehiculosModule } from './vehiculos/vehiculos.module';
 import { ArregloModule } from './arreglo/arreglo.module';
 import { ModalsModule } from '../modals/modals.module';
+import { GraficaComponent } from './grafica/grafica.component';
 //import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
   declarations: [
-    FacturacionComponent
+    FacturacionComponent,
+    GraficaComponent
   ],
   imports: [
     CommonModule,
@@ -23,10 +25,10 @@ import { ModalsModule } from '../modals/modals.module';
     VehiculosModule,
     ArregloModule,
     FormsModule,
-    ModalsModule
+    ModalsModule,
   ], 
   exports: [
-    FacturacionComponent
+    FacturacionComponent,GraficaComponent
   ]
 })
 export class ModuloAdminModule { }
