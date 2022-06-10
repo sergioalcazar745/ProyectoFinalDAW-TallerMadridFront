@@ -22,6 +22,7 @@ import { ModalsModule } from '../modals/modals.module';
     ClientesModule,
     VehiculosModule,
     ArregloModule,
+    FormsModule,
     ModalsModule
   ], 
   exports: [

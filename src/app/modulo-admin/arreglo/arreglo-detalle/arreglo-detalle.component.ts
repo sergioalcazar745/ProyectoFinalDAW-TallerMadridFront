@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Arreglo } from 'src/app/interfaces/facturacion';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Arreglo, ArregloSimple } from 'src/app/interfaces/facturacion';
 import { ArreglosService } from 'src/app/services/arreglos.service';
 
 @Component({
@@ -15,12 +15,13 @@ export class ArregloDetalleComponent implements OnInit {
   precio:string;
   vehiculo:string;
   arreglo:Arreglo;
+  arregloSimple:ArregloSimple;
+
   title:string = "¿Estas seguro que quieres eliminar este arreglo?";
-  constructor(private route: ActivatedRoute, private arregloService: ArreglosService) { }
+  constructor(private route: ActivatedRoute, private arregloService: ArreglosService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
-      //console.log("parametros" + Object.values(param));
       this.arregloService.getArregloById(Number(Object.values(param))).subscribe((data) => {
         this.arreglo = data;
         this.cargarArreglos()
@@ -36,6 +37,19 @@ export class ArregloDetalleComponent implements OnInit {
   }
 
   delete(){
+    this.arregloService.deleteArreglo(this.arreglo.id).subscribe(data=>{
+      console.log("DatitaSave: " + Object.values(data))
+    })
+  }
 
+  edit(){
+    this.arregloSimple={id:this.arreglo.id, fecha:this.fecha, descripcion:this.descripcion, precio:this.precio, vehiculo:this.vehiculo}
+    this.arregloService.editArreglo(this.arregloSimple).subscribe(data=>{
+      console.log("DatitaEdit" + Object.values(data))
+    })
+  }
+
+  return(){
+    this.router.navigateByUrl("/arreglos")
   }
 }

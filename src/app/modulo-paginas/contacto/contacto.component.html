@@ -10,31 +10,31 @@
 
 <div class="container">
     <div class="row">
-        <span class="rounded row">
+        <form class="rounded row">
             <div class="col-5 my-3">
                 <legend>Datos Personales</legend>
                 <div class="row form-group my-3">
                     <label for="nombre" class="col-lg-3 col-md-12 col-form-label">Nombre</label>
                     <div class="col-lg-9">
-                        <input type="text" class="form-control" id="nombre" placeholder="Juan" [(ngModel)]="nombre">
+                        <input type="text" class="form-control" id="nombre" placeholder="Juan" name="nombre" [(ngModel)]="nombre">
                     </div>
                 </div>
                 <div class="row form-group my-3">
                     <label for="apellidos" class="col-lg-3 col-md-12 col-form-label">Apellidos</label>
                     <div class="col-lg-9">
-                        <input type="text" class="form-control" id="apellidos" placeholder="Pérez García" [(ngModel)]="apellidos">
+                        <input type="text" class="form-control" id="apellidos" placeholder="Pérez García" name="apellidos" [(ngModel)]="apellidos">
                     </div>
                 </div>
                 <div class="row form-group my-3">
                     <label for="email" class="col-lg-3 col-md-12 col-form-label">Email</label>
                     <div class="col-lg-9">
-                        <input type="email" class="form-control" id="email" placeholder="nombre@gmail.com" [(ngModel)]="mail">
+                        <input type="email" class="form-control" id="email" placeholder="nombre@gmail.com" name="mail" [(ngModel)]="mail">
                     </div>
                 </div>
                 <div class="row form-group my-3">
                     <label for="telefono" class="col-lg-3 col-md-12 col-form-label">Telefono</label>
                     <div class="col-lg-9">
-                        <input type="number" class="form-control" id="telefono" placeholder="+34 639 852 147" [(ngModel)]="tfn">
+                        <input type="number" class="form-control" id="telefono" placeholder="+34 639 852 147" name="tfn" [(ngModel)]="tfn">
                     </div>
                 </div>
             </div>
@@ -43,22 +43,20 @@
                 <div class="row form-group my-3">
                     <label for="nombre" class="col-lg-3 col-md-12 col-form-label">Marca/Modelo</label>
                     <div class="col-lg-9">
-                        <input type="text" class="form-control" id="nombre" placeholder="Seat ibiza" [(ngModel)]="vehiculo">
+                        <input type="text" class="form-control" id="nombre" placeholder="Seat ibiza" name="vehiculo" [(ngModel)]="vehiculo">
                     </div>
                 </div>
                 <div class="row form-group my-3">
                     <label for="descripcion" class="col-lg-3 col-md-12 col-form-label">Descripción</label>
                     <div class="col-lg-9">
-                        <textarea class="form-control" id="descripcion" placeholder="Describe el problema" [(ngModel)]="motivo"
+                        <textarea class="form-control" id="descripcion" placeholder="Describe el problema" name="motivo" [(ngModel)]="motivo"
                             rows="5"></textarea>
                     </div>
                 </div>
             </div>
-
-            <div class="col-3 offset-9 mb-2">
-                <button type="button" class="btn btn-warning font-weight-bold" id="botonCita" (click)="enviarCorreo()"
-                    routerLink="SERVICIOS">PIDE
-                    TU CITA</button>
+            <div class="col-lg-3 mb-2">
+                <button type="button" class="btn btn-warning font-weight-bold" id="botonCita"
+                    routerLink="SERVICIOS" (click)="enviarCorreo()">PIDE TU CITA</button>
             </div>
         </span>
     </div>
