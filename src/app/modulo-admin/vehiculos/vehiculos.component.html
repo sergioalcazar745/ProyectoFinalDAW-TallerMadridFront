@@ -1,11 +1,11 @@
 <div class="row">
-  <img src="../../../assets/img_services.png" class="img-fluid" alt="...">
+  <img src="../../../assets/img_vehiculos.png" class="img-fluid" alt="...">
 </div>
 
 <app-table [rows]="rows" [columns]="columns" (click)="onClickRow($event)" (filterKey)="filter($event)"></app-table>
 
 <div class="container mb-3">
-  <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Añadir vehiculo</button>
+  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Añadir vehiculo</button>
 </div>
 
 <app-modal-vehiculo (clickAdd)="add($event)" [tipo] = "'general'"></app-modal-vehiculo>
