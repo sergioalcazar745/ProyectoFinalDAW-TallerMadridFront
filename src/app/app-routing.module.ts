@@ -12,6 +12,7 @@ import { ClientesDetalleComponent } from './modulo-admin/clientes/clientes-detal
 import { VehiculosDetalleComponent } from './modulo-admin/vehiculos/vehiculos-detalle/vehiculos-detalle.component';
 import { ArregloComponent } from './modulo-admin/arreglo/arreglo.component';
 import { ArregloDetalleComponent } from './modulo-admin/arreglo/arreglo-detalle/arreglo-detalle.component';
+import { GraficaComponent } from './modulo-admin/grafica/grafica.component';
 
 const routes: Routes = [
   {
@@ -61,6 +62,10 @@ const routes: Routes = [
   {
     path:'vehiculos-detalle/:matricula',
     component: VehiculosDetalleComponent
+  },
+  {
+    path:"grafica",
+    component: GraficaComponent
   },
   {
     path:'**',

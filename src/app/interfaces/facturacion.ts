@@ -53,3 +53,7 @@ export interface Usuario {
   first_name: string;
   last_name: string;
 }
+export interface grafica{
+  arreglos: Arreglo[];
+  gastos: Gasto[];
+}
