@@ -37,7 +37,7 @@
     </form>
     <h2 class="text-center">Arreglos - {{matricula}}</h2>
 
-    <app-table [rows]="rows" [columns]="columns" (click)="onClickRow($event)" (filterKey)="filter($event)"></app-table>
+    <app-table [rows]="rows" [columns]="columns" (clickfila)="onClickRow($event)" (filterKey)="filter($event)"></app-table>
 
     <div class="mb-3">
         <a href="" class="btn btn-warning mx-2" (click)="edit()">Edit</a>

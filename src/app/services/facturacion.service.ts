@@ -24,7 +24,9 @@ export class FacturacionService {
       data => {
         console.log("DATA DE GASTOS POR FECHA");
         console.log(data);
-          //Aqui mapear los gastos y arreglos y append a las variables del servicio
+        data['arreglos']['05'].forEach((valor,clave)=> {
+          console.log(`la clave es :${clave} y el valor asociado es ${valor}`);
+      })
         },
         error => {
           console.log(error);
@@ -51,3 +53,4 @@ export class FacturacionService {
     {"nombre":nombre,"apellidos":apellidos,"mail":mail,"tfn":tfn,"vehiculo":vehiculo,"motivo":motivo}).subscribe()
   }
 }
+
