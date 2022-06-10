@@ -28,6 +28,14 @@ export class ArreglosService {
     return this.http.post<Arreglo>(environment.baseurl+"arreglo/savearreglo/", arreglo);
   }
 
+  deleteArreglo(id:number){
+    return this.http.get<Arreglo>(environment.baseurl+"arreglo/deletearreglo/", { params: {id: id}});
+  }
+
+  editArreglo(arreglo:ArregloSimple){
+    return this.http.put<Arreglo>(environment.baseurl+"arreglo/updatearreglo/", arreglo);
+  }
+
   /*getUsu(usuario:string, password:string){
     return this.http.post<Iadmin>(environment.baseurl+"administrador/login/",
     {"usu":usuario,"password":password});

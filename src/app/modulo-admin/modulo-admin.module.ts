@@ -20,7 +20,8 @@ import { ArregloModule } from './arreglo/arreglo.module';
     TableModule,
     ClientesModule,
     VehiculosModule,
-    ArregloModule
+    ArregloModule,
+    FormsModule
   ], 
   exports: [
     FacturacionComponent
