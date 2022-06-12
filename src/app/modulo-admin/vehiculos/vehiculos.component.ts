@@ -15,6 +15,7 @@ export class VehiculosComponent implements OnInit {
   temp = [];
   vehiculoChange:VehiculoSimple;
   vehiculo:VehiculoSimple;
+  titleError:string;
   columns = [{ name: 'Marca' }, { name: 'Modelo' }, { name: 'Color' }, { name: 'Matricula' }, { name: 'Cliente' }];
 
   constructor(private vehiculoService : VehiculoService, private router : Router) { }
@@ -54,6 +55,9 @@ export class VehiculosComponent implements OnInit {
     this.vehiculo = event;
     this.vehiculoService.saveVehiculo(this.vehiculo).subscribe(data =>{
       console.log("DataVehiculo: " + data)
+    },
+    error=>{
+      this.errorDialog(error.error.mensaje)
     })
     document.getElementById("close").click();
     this.cargarVehiculos()
@@ -64,5 +68,11 @@ export class VehiculosComponent implements OnInit {
       this.vehiculoChange = {cliente:list[key].cliente.dni, color:list[key].color, marca:list[key].marca, matricula:list[key].matricula, modelo:list[key].modelo}
       this.change.push(this.vehiculoChange)
     }
+  }
+
+  errorDialog(texto:string){
+    document.getElementById("closeConfirmacion").click();
+    this.titleError = texto;
+    document.getElementById("botonError").click()
   }
 }

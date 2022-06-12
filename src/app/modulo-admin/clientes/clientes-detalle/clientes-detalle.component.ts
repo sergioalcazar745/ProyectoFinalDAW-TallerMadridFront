@@ -98,11 +98,11 @@ export class ClientesDetalleComponent implements OnInit {
     }
     this.cilenteService.updateCliente(this.clienteUpdate).subscribe(data =>{
       console.log("DatitaUpdate: " + Object.values(data))
+      //this.router.navigateByUrl("/clientes")
     },
     error => {
       this.errorDialog(error.error.mensaje, "edit")
     })
-    //this.router.navigateByUrl("/clientes")
   }
 
   add(event){
@@ -110,6 +110,9 @@ export class ClientesDetalleComponent implements OnInit {
     this.vehiculo.cliente = this.dni;
     this.vehiculoService.saveVehiculo(this.vehiculo).subscribe(data =>{
       console.log("DataVehiculo: " + Object.values(data))
+    },
+    error => {
+      this.errorDialog(error.error.mensaje, "edit")
     })
     document.getElementById("close").click();
     this.router.navigateByUrl("/clientes")

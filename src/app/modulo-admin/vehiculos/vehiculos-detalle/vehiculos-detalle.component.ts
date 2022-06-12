@@ -65,7 +65,7 @@ export class VehiculosDetalleComponent implements OnInit {
       this.router.navigateByUrl("/vehiculos")
     },
     error=>{
-      this.errorDialog(error.error.mensaje)
+      this.errorDialog(error.error.mensaje, "")
     })       
   }
 
@@ -76,9 +76,13 @@ export class VehiculosDetalleComponent implements OnInit {
       this.vehiculo = {cliente:this.cliente, color:this.color, marca:this.marca, matricula:this.matricula, modelo:this.modelo}
       this.vehiculoService.updateVehiculo(this.vehiculo).subscribe(data => {
         console.log("DatitaUpdate" + Object.values(data))
+        alert(Object.values(data))
+        this.router.navigateByUrl("/vehiculos")
+      },
+      error=>{
+        this.errorDialog(error.error.mensaje, "edit")
       })
     }  
-    this.router.navigateByUrl("/vehiculos")
   }
 
   return(){
@@ -106,9 +110,12 @@ export class VehiculosDetalleComponent implements OnInit {
     this.rows = temp;
   }
 
-  errorDialog(texto:string){
-    document.getElementById("closeConfirmacion").click();
-    this.titleError = texto;
-    document.getElementById("botonError").click()
+  errorDialog(texto:string, tipo:string){
+    if(tipo == "edit"){
+      this.titleError = texto;
+      document.getElementById("botonError").click()
+    }else{
+      document.getElementById("closeConfirmacion").click();
+    }    
   }
 }

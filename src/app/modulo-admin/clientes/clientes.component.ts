@@ -13,6 +13,7 @@ export class ClientesComponent implements OnInit {
 
   rows = [];
   temp = [];
+  titleError:string = "";
   columns = [{ name: 'Nombre' }, { name: 'Apellidos' }, { name: 'Email' }, { name: 'Telefono' }, { name: 'Calle' }, { name: 'DNI' }];
   cliente:Cliente;
 
@@ -21,6 +22,7 @@ export class ClientesComponent implements OnInit {
   }
 
   cargarClientes(){
+    console.log("Entro cabron")
     this.rows = [];
     this.temp = [];
     this.clientesService.getAllClientes().subscribe(
@@ -50,9 +52,12 @@ export class ClientesComponent implements OnInit {
     console.log("clienteAdd" + this.cliente)
     this.clientesService.setCliente(this.cliente).subscribe((data) =>{
       console.log("DataDevuelta: " + Object.values(data))
+      this.cargarClientes()
+    }, 
+    (error) =>{
+      this.errorDialog(error.error.mensaje)
     })
     document.getElementById("close").click();
-    this.cargarClientes()
   }
 
   ngOnInit(): void {
@@ -60,5 +65,11 @@ export class ClientesComponent implements OnInit {
       window.location.reload();
       localStorage.setItem("reload", "false")
     }
+  }
+
+  errorDialog(texto:string){
+    document.getElementById("close").click();
+    this.titleError = texto;
+    document.getElementById("botonError").click()
   }
 }

@@ -40,9 +40,11 @@ export class ArregloDetalleComponent implements OnInit {
   delete(){
     this.arregloService.deleteArreglo(this.arreglo.id).subscribe(data=>{
       console.log("DatitaSave: " + Object.values(data))
+      this.router.navigateByUrl("/arreglos")
+    },
+    error=>{
+      this.errorDialog(error.error.mensaje, "")
     })
-    document.getElementById("closeConfirmacion").click()
-    this.router.navigateByUrl("/arreglos")
   }
 
   edit(){
@@ -50,10 +52,22 @@ export class ArregloDetalleComponent implements OnInit {
     this.arregloService.editArreglo(this.arregloSimple).subscribe(data=>{
       console.log("DatitaEdit" + Object.values(data))
       this.router.navigateByUrl("/arreglos")
+    },
+    error=>{
+      this.errorDialog(error.error.mensaje, "edit")
     })
   }
 
   return(){
     this.router.navigateByUrl("/arreglos")
+  }
+
+  errorDialog(texto:string, tipo:string){
+    if(tipo == "edit"){
+      this.titleError = texto;
+      document.getElementById("botonError").click()
+    }else{
+      document.getElementById("closeConfirmacion").click();
+    }    
   }
 }
