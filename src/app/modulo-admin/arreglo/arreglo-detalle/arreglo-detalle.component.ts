@@ -18,6 +18,7 @@ export class ArregloDetalleComponent implements OnInit {
   arregloSimple:ArregloSimple;
 
   title:string = "¿Estas seguro que quieres eliminar este arreglo?";
+  titleError:string = "";
   constructor(private route: ActivatedRoute, private arregloService: ArreglosService, private router: Router) { }
 
   ngOnInit(): void {
@@ -40,12 +41,15 @@ export class ArregloDetalleComponent implements OnInit {
     this.arregloService.deleteArreglo(this.arreglo.id).subscribe(data=>{
       console.log("DatitaSave: " + Object.values(data))
     })
+    document.getElementById("closeConfirmacion").click()
+    this.router.navigateByUrl("/arreglos")
   }
 
   edit(){
     this.arregloSimple={id:this.arreglo.id, fecha:this.fecha, descripcion:this.descripcion, precio:this.precio, vehiculo:this.vehiculo}
     this.arregloService.editArreglo(this.arregloSimple).subscribe(data=>{
       console.log("DatitaEdit" + Object.values(data))
+      this.router.navigateByUrl("/arreglos")
     })
   }
 
