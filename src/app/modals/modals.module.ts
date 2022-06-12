@@ -26,6 +26,7 @@ import { ModalGastosComponent } from './modal-gastos/modal-gastos.component';
     ModalArregloComponent,
     ModalVehiculoComponent,
     ModalConfirmacionComponent,
+    ModalErrorComponent,
     ModalGastosComponent
   ]
 })

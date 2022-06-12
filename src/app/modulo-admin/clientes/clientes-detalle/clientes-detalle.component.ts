@@ -25,6 +25,7 @@ export class ClientesDetalleComponent implements OnInit {
   vehiculo:VehiculoSimple;
 
   title:string="¿Estas seguro de eliminar este cliente?";
+  titleError:string="";
 
   rows = [];
   temp = [];
@@ -81,9 +82,12 @@ export class ClientesDetalleComponent implements OnInit {
   delete(){
     this.cilenteService.deleteCliente(this.dni).subscribe(data => {
       console.log("DataDelete: " + Object.values(data))
-    })
-    document.getElementById("close").click()
-    this.router.navigateByUrl("/clientes")
+      document.getElementById("closeConfirmacion").click();
+      this.router.navigateByUrl("/clientes")
+    },
+    error => {
+      this.errorDialog(error.error.mensaje, "")
+    })    
   }
 
   edit(){
@@ -94,8 +98,11 @@ export class ClientesDetalleComponent implements OnInit {
     }
     this.cilenteService.updateCliente(this.clienteUpdate).subscribe(data =>{
       console.log("DatitaUpdate: " + Object.values(data))
+    },
+    error => {
+      this.errorDialog(error.error.mensaje, "edit")
     })
-    this.router.navigateByUrl("/clientes")
+    //this.router.navigateByUrl("/clientes")
   }
 
   add(event){
@@ -105,10 +112,19 @@ export class ClientesDetalleComponent implements OnInit {
       console.log("DataVehiculo: " + Object.values(data))
     })
     document.getElementById("close").click();
-    window.location.reload();
+    this.router.navigateByUrl("/clientes")
   }
 
   return(){
     this.router.navigateByUrl("/clientes")
+  }
+
+  errorDialog(texto:string, tipo:string){
+    if(tipo == "edit"){
+      this.titleError = texto;
+      document.getElementById("botonError").click()
+    }else{
+      document.getElementById("closeConfirmacion").click();
+    }    
   }
 }

@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalErrorComponent implements OnInit {
 
+  title:string;
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

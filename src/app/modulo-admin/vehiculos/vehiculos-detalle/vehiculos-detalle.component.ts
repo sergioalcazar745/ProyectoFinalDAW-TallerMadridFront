@@ -17,6 +17,7 @@ export class VehiculosDetalleComponent implements OnInit {
   color:string = "";
   matricula:string = "";
   cliente:string = "";
+  error:string = "";
   vehiculo:VehiculoSimple;
   
   arreglo:ArregloSimple;
@@ -26,6 +27,7 @@ export class VehiculosDetalleComponent implements OnInit {
   columns = [{ name: 'Fecha' }, { name: 'Descripcion' }, { name: 'Precio' }];
 
   title:string = "¿Estas seguro de eliminar este vehiculo?";
+  titleError:string = "";
   constructor(private route : ActivatedRoute, private vehiculoService : VehiculoService, private arregloService : ArreglosService, private router: Router) { }
 
   ngOnInit(): void {
@@ -60,19 +62,23 @@ export class VehiculosDetalleComponent implements OnInit {
   delete(){
     this.vehiculoService.deleteVehiculo(this.matricula).subscribe(data=>{
       console.log("DatitaDelete" + Object.values(data))
-    })
-    document.getElementById("close").click();
-    //this.router.navigateByUrl("/vehiculos")
+      this.router.navigateByUrl("/vehiculos")
+    },
+    error=>{
+      this.errorDialog(error.error.mensaje)
+    })       
   }
 
   edit(){
-    /*if(this.marca == "" || this.modelo == "" || this.color == "" || this.matricula == "" || this.cliente == ""){
-      
-    }*/
-    this.vehiculo = {cliente:this.cliente, color:this.color, marca:this.marca, matricula:this.matricula, modelo:this.modelo}
-    this.vehiculoService.updateVehiculo(this.vehiculo).subscribe(data => {
-      console.log("DatitaUpdate" + Object.values(data))
-    })
+    if(this.marca == "" || this.modelo == "" || this.color == "" || this.matricula == "" || this.cliente == ""){
+      this.error = "Rellena todos los campos";
+    } else{
+      this.vehiculo = {cliente:this.cliente, color:this.color, marca:this.marca, matricula:this.matricula, modelo:this.modelo}
+      this.vehiculoService.updateVehiculo(this.vehiculo).subscribe(data => {
+        console.log("DatitaUpdate" + Object.values(data))
+      })
+    }  
+    this.router.navigateByUrl("/vehiculos")
   }
 
   return(){
@@ -98,5 +104,11 @@ export class VehiculosDetalleComponent implements OnInit {
       return d.fecha.indexOf(event) !== -1 || !event;
     });
     this.rows = temp;
+  }
+
+  errorDialog(texto:string){
+    document.getElementById("closeConfirmacion").click();
+    this.titleError = texto;
+    document.getElementById("botonError").click()
   }
 }

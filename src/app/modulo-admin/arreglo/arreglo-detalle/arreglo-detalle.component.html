@@ -32,4 +32,6 @@
     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Eliminar</button>
     <a class="btn btn-primary" style="margin-left:15px;" (click)="return()">Volver</a>
 </div>
+<!-- <button type="button" class="btn btn-danger" [hidden] = "true" data-toggle="modal" data-target="#exampleModalCenter2">Eliminar</button> -->
 <app-modal-confirmacion (clickAdd)="delete()" [title]="title"></app-modal-confirmacion>
+<app-modal-error [title]="titleError"></app-modal-error>

@@ -34,6 +34,6 @@ export class ClienteService {
 
     deleteCliente(dni:string){
       console.log("DniCliente: " + dni)
-      return this.http.delete<Cliente>(environment.baseurl + "cliente/borrar", {params: {dni: dni}})
+      return this.http.get<Cliente>(environment.baseurl + "cliente/borrar", {params: {dni: dni}})
     }
 }
