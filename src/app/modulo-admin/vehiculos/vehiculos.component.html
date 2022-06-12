@@ -10,25 +10,24 @@
 
 <app-modal-vehiculo (clickAdd)="add($event)" [tipo] = "'general'"></app-modal-vehiculo>
 
-<!--<div class="container my-5 py-5">
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Marca</th>
-        <th scope="col">Modelo</th>
-        <th scope="col">Color</th>
-        <th scope="col">Matricula</th>
-        <th scope="col">Cliente</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of vehiculos">
-        <td>{{item.marca}}</td>
-        <td>{{item.modelo}}</td>
-        <td>{{item.color}}</td>
-        <td>{{item.matricula}}</td>
-        <td>{{item.cliente.dni}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>-->
+<button type="button" class="btn btn-danger error" [hidden]="true" data-toggle="modal" data-target="#exampleModalCenter2" id="botonError"></button>
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> -->
+            <div class="modal-body">
+                <img src="../../../../assets/error.png" alt="" width="50" height="50">
+                <h4 class="" id="exampleModalLongTitle">{{titleError}}</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="closeError" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
