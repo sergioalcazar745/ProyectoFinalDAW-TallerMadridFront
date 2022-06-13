@@ -80,7 +80,8 @@ export class ClientesDetalleComponent implements OnInit {
   }
 
   delete(){
-    this.cilenteService.deleteCliente(this.dni).subscribe(data => {
+    this.cilenteService.deleteCliente(this.dni).subscribe(
+      data => {
       console.log("DataDelete: " + Object.values(data))
       document.getElementById("closeConfirmacion").click();
       this.router.navigateByUrl("/clientes")
@@ -98,7 +99,7 @@ export class ClientesDetalleComponent implements OnInit {
     }
     this.cilenteService.updateCliente(this.clienteUpdate).subscribe(data =>{
       console.log("DatitaUpdate: " + Object.values(data))
-      //this.router.navigateByUrl("/clientes")
+      this.router.navigateByUrl("/clientes")
     },
     error => {
       this.errorDialog(error.error.mensaje, "edit")

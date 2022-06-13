@@ -34,39 +34,28 @@ export class FacturacionComponent implements OnInit {
 
 
   //MODAL
-  fecha: string = "";
+  fecha: Date;
   concepto: string = "";
   importe: string = "";
   usuario: string = "";
+  id: number=0;
+  UpdateError:boolean=false;
+  status:string="";
+  UpdateOk:boolean=false;
 
 
 
   constructor(private serv: FacturacionService) { }
 
   ngOnInit(): void {
-    this.serv.getGastosTotales().subscribe(
-      data => {
-        this.changeRows(data)
-        this.temp = [...this.change]
-        this.rows = this.change;
-
-        // console.log(data);
-        // this.gastos = data
-        // console.log("Estos son tus gastos ");
-        // console.log(this.gastos);
-      },
-      error => {
-        console.log("Alberto")
-        console.log(error);
-      }
-    );
+    
     // this.serv.getArreglosTotales().subscribe(res=>{this.arreglos=res})
 
 
     // this.serv.getArreglosTotales().subscribe(e=>{
     //   e.forEach(z=>{this.arreglos.push(z)})
     // });
-
+    this.cargarGastosTotales();
     this.serv.getArreglosTotales().subscribe(
       data => {
         this.changeRows2(data)
@@ -91,8 +80,10 @@ export class FacturacionComponent implements OnInit {
   }
 
   onClickRow(event) {
-
-    
+    this.UpdateError=false;
+    this.UpdateOk=false;
+    this.status="";
+    this.id=event.id;
     this.datosModal = event;
     this.fecha = event.fecha;
     console.log(event.fecha);
@@ -102,8 +93,6 @@ export class FacturacionComponent implements OnInit {
     if (event.fecha != undefined) {
       document.getElementById('botonModal').click()
 
-    
-      
     }
 
   }
@@ -129,7 +118,7 @@ export class FacturacionComponent implements OnInit {
 
   changeRows(list) {
     for (const key in list) {
-      this.facturacion = { concepto: list[key].concepto, fecha: list[key].fecha, importe: list[key].importe, usuario: list[key].usuario.username }
+      this.facturacion = { id:list[key].id, concepto: list[key].concepto, fecha: list[key].fecha, importe: list[key].importe, usuario: list[key].usuario.username }
       this.change.push(this.facturacion)
     }
   }
@@ -141,6 +130,49 @@ export class FacturacionComponent implements OnInit {
     }
   }
 
+  updateGasto(){
+    this.serv.updateGasto(this.id,this.fecha,this.concepto,this.importe,this.usuario).subscribe(
+      data=>{
+        this.UpdateOk=true;
+        this.status="Gasto modificado con éxito";
+        this.cargarGastosTotales();
+
+      },
+      error=>{
+        this.UpdateError=true;
+        this.status="Error al modificar el gasto";
+      }
+    )
+  }
+
+
+
+
+  deleteGasto(){
+    
+  }
+  cargarGastosTotales(){
+    this.rows=[]
+    this.temp=[]
+    this.change=[];
+  this.serv.getGastosTotales().subscribe(
+    data => {
+      
+      this.changeRows(data)
+      this.temp = [...this.change]
+      this.rows = this.change;
+
+      // console.log(data);
+      // this.gastos = data
+      //  console.log("Estos son tus gastos ");
+      //  console.log(this.rows);
+    },
+    error => {
+      console.log("Alberto")
+      console.log(error);
+    }
+  );
+  }
 
 
 }

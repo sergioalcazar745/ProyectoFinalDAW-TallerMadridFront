@@ -29,7 +29,7 @@ export class ClienteService {
 
     updateCliente(cliente:Cliente){
       console.log("ClienteService: " + cliente)
-      return this.http.put<Cliente>(environment.baseurl + "cliente/modificar/", cliente)
+      return this.http.put<Cliente[]>(environment.baseurl + "cliente/modificar/", cliente)
     }
 
     deleteCliente(dni:string){
