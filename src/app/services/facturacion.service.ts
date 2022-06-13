@@ -36,6 +36,7 @@ export class FacturacionService {
   }
   getGastosTotales(){
     return this.serv.get<Gasto[]>('http://127.0.0.1:8000/facturacion/gastos')
+    
   }
 
   getArreglosTotales(){
@@ -53,5 +54,17 @@ export class FacturacionService {
     return this.serv.post('http://127.0.0.1:8000/cliente/formularioContacto/',
     {"nombre":nombre,"apellidos":apellidos,"mail":mail,"tfn":tfn,"vehiculo":vehiculo,"motivo":motivo}).subscribe()
   }
+
+  updateGasto(id:number, fecha:Date , concepto:string, importe:string, usuario:string){
+    return this.serv.post('http://127.0.0.1:8000/facturacion/UpdateGasto/?id='+id,
+    {'fecha':fecha,'concepto':concepto,'importe':importe})
+  }
+
+
+
+  deleteGasto(){
+
+  }
+
 }
 

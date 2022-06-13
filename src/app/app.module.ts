@@ -10,6 +10,7 @@ import { ModuloAdminModule } from './modulo-admin/modulo-admin.module';
 import { TableModule } from './table/table.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalsModule } from './modals/modals.module';
+import { ClientesModule } from './modulo-admin/clientes/clientes.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ModalsModule } from './modals/modals.module';
     ModuloAdminModule,
     TableModule,
     BrowserAnimationsModule,
-    ModalsModule
+    ModalsModule,
+    ClientesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

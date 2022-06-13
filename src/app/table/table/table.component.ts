@@ -28,7 +28,9 @@ export class TableComponent implements OnInit {
 
   onActivate(event) {
     if(event.type == 'click') {
+      console.log(event.row)
       this.clickfila.emit(event.row)
+      
     }
   }
 

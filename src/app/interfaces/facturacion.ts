@@ -34,6 +34,7 @@ export interface Mes {
 }
 
 export interface Gasto {
+  id?:number;
   fecha: string;
   usuario: Usuario;
   concepto: string;

@@ -17,8 +17,8 @@ export class HomeComponent implements OnInit {
     console.log("pedro")
     if(localStorage.getItem("reload") == "false"){
       console.log("pedro")
-      localStorage.clear()
-      window.location.reload();
+      // localStorage.clear()
+      // window.location.reload();
     }
   }
 }
