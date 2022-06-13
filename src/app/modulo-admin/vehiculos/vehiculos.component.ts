@@ -55,12 +55,12 @@ export class VehiculosComponent implements OnInit {
     this.vehiculo = event;
     this.vehiculoService.saveVehiculo(this.vehiculo).subscribe(data =>{
       console.log("DataVehiculo: " + data)
+      document.getElementById("close").click()
+      this.cargarVehiculos()
     },
     error=>{
-      this.errorDialog(error.error.mensaje)
-    })
-    document.getElementById("close").click();
-    this.cargarVehiculos()
+      this.errorDialog(error.error.mensaje, "edit")
+    })   
   }
 
   changeRows(list){
@@ -70,9 +70,16 @@ export class VehiculosComponent implements OnInit {
     }
   }
 
-  errorDialog(texto:string){
-    document.getElementById("closeConfirmacion").click();
-    this.titleError = texto;
-    document.getElementById("botonError").click()
+  errorDialog(texto, tipo:string){
+    document.getElementById("close").click();
+    if(tipo == "edit"){
+      for (const key in texto) {
+        this.titleError = texto[key];
+        break;
+      }
+      document.getElementById("botonError").click()
+    }else{
+      document.getElementById("closeConfirmacion").click();
+    }
   }
 }

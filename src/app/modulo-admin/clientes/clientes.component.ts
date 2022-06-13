@@ -55,7 +55,7 @@ export class ClientesComponent implements OnInit {
       this.cargarClientes()
     }, 
     (error) =>{
-      this.errorDialog(error.error.mensaje)
+      this.errorDialog(error.error.mensaje, "edit")
     })
     document.getElementById("close").click();
   }
@@ -67,9 +67,15 @@ export class ClientesComponent implements OnInit {
     }
   }
 
-  errorDialog(texto:string){
-    document.getElementById("close").click();
-    this.titleError = texto;
-    document.getElementById("botonError").click()
+  errorDialog(texto, tipo:string){
+    if(tipo == "edit"){
+      for (const key in texto) {
+        this.titleError = texto[key];
+        break;
+      }
+      document.getElementById("botonError").click()
+    }else{
+      document.getElementById("closeConfirmacion").click();
+    }
   }
 }

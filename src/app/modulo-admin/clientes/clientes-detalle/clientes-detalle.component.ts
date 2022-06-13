@@ -17,7 +17,6 @@ export class ClientesDetalleComponent implements OnInit {
   nombre:string;
   apellidos:string;
   email:string;
-  foto:string;
   telefono:string;
   calle:string;
   dni:string;
@@ -61,12 +60,7 @@ export class ClientesDetalleComponent implements OnInit {
   cargarCliente(){
     this.nombre = this.cliente.nombre;
     this.apellidos = this.cliente.apellidos;
-    this.email = this.cliente.email;
-    if(this.cliente.foto == null){
-      this.foto = "Ninguna";
-    }else{
-      this.foto = this.cliente.foto;
-    }    
+    this.email = this.cliente.email;   
     this.telefono = this.cliente.telefono;
     this.calle = this.cliente.calle;
     this.dni = this.cliente.dni;
@@ -80,9 +74,8 @@ export class ClientesDetalleComponent implements OnInit {
   }
 
   delete(){
-    this.cilenteService.deleteCliente(this.dni).subscribe(
-      data => {
-      console.log("DataDelete: " + Object.values(data))
+    this.cilenteService.deleteCliente(this.dni).subscribe(data => {
+      alert("DataDelete: " + Object.values(data))
       document.getElementById("closeConfirmacion").click();
       this.router.navigateByUrl("/clientes")
     },
@@ -91,17 +84,16 @@ export class ClientesDetalleComponent implements OnInit {
     })    
   }
 
-  edit(){
-    if(this.foto = "Ninguna"){
-      this.clienteUpdate = {nombre:this.nombre, apellidos:this.apellidos, calle:this.calle, dni:this.dni, email:this.email, foto:null, telefono:this.telefono}
-    }else{
-      this.clienteUpdate = {nombre:this.nombre, apellidos:this.apellidos, calle:this.calle, dni:this.dni, email:this.email, foto:this.foto, telefono:this.telefono}
-    }
-    this.cilenteService.updateCliente(this.clienteUpdate).subscribe(data =>{
+  edit(){   
+    alert("Entro") 
+    this.clienteUpdate = {"nombre":this.nombre, "apellidos":this.apellidos, "calle":this.calle, "dni":this.dni, "email":this.email, "telefono":this.telefono}
+    this.cilenteService.updateCliente(this.clienteUpdate).subscribe((data) =>{      
+      alert("EntroData: "+ Object.values(data)) 
       console.log("DatitaUpdate: " + Object.values(data))
       this.router.navigateByUrl("/clientes")
     },
-    error => {
+    (error) => {
+      alert("Error")
       this.errorDialog(error.error.mensaje, "edit")
     })
   }
@@ -111,21 +103,24 @@ export class ClientesDetalleComponent implements OnInit {
     this.vehiculo.cliente = this.dni;
     this.vehiculoService.saveVehiculo(this.vehiculo).subscribe(data =>{
       console.log("DataVehiculo: " + Object.values(data))
+      document.getElementById("close").click()
+      this.router.navigateByUrl("/clientes")
     },
     error => {
       this.errorDialog(error.error.mensaje, "edit")
     })
-    document.getElementById("close").click();
-    this.router.navigateByUrl("/clientes")
   }
 
   return(){
     this.router.navigateByUrl("/clientes")
   }
 
-  errorDialog(texto:string, tipo:string){
+  errorDialog(texto, tipo:string){
     if(tipo == "edit"){
-      this.titleError = texto;
+      for (const key in texto) {
+        this.titleError = texto[key];
+        break;
+      }
       document.getElementById("botonError").click()
     }else{
       document.getElementById("closeConfirmacion").click();

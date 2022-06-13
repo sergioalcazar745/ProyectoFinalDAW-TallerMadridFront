@@ -11,7 +11,6 @@ export class ModalClienteComponent implements OnInit {
   nombre:string = "";
   apellidos:string = "";
   email:string = "";
-  foto:string = null;
   telefono:string = "";
   calle:string = "";
   dni:string = "";
@@ -30,7 +29,7 @@ export class ModalClienteComponent implements OnInit {
       this.error = "Por favor introduzca todos los campos";
     }else{
       if(this.checkDNI(this.dni)){
-        this.cliente = {nombre:this.nombre, apellidos:this.apellidos, email:this.email, foto:this.foto, telefono:this.telefono, calle:this.calle, dni:this.dni}
+        this.cliente = {nombre:this.nombre, apellidos:this.apellidos, email:this.email, telefono:this.telefono, calle:this.calle, dni:this.dni}
         this.clickAdd.emit(this.cliente);
       }      
     }    
