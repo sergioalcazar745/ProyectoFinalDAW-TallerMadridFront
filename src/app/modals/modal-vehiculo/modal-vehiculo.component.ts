@@ -24,10 +24,8 @@ export class ModalVehiculoComponent implements OnInit {
   }
 
   add(){
-    if(this.marca == "" || this.modelo == "" || this.color == "" || this.matricula == ""){
-      if(this.tipo == "general" && this.cliente == ""){
-        this.error = "Por favor rellena todos los campos";
-      }      
+    if(this.marca == "" || this.modelo == "" || this.color == "" || this.matricula == "" || (this.tipo == "general" && this.cliente == "")){
+        this.error = "Por favor rellena todos los campos";   
     }else{
       this.vehiculo = {marca:this.marca, modelo:this.modelo, color:this.color, matricula:this.matricula, cliente:this.cliente}
       this.clickAdd.emit(this.vehiculo)

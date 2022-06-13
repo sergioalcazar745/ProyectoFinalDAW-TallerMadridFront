@@ -62,6 +62,7 @@ export class VehiculosDetalleComponent implements OnInit {
   delete(){
     this.vehiculoService.deleteVehiculo(this.matricula).subscribe(data=>{
       console.log("DatitaDelete" + Object.values(data))
+      document.getElementById("closeConfirmacion").click();
       this.router.navigateByUrl("/vehiculos")
     },
     error=>{
@@ -76,8 +77,7 @@ export class VehiculosDetalleComponent implements OnInit {
       this.vehiculo = {cliente:this.cliente, color:this.color, marca:this.marca, matricula:this.matricula, modelo:this.modelo}
       this.vehiculoService.updateVehiculo(this.vehiculo).subscribe(data => {
         console.log("DatitaUpdate" + Object.values(data))
-        alert(Object.values(data))
-        this.router.navigateByUrl("/vehiculos")
+        this.router.navigate(['/', 'vehiculos'])
       },
       error=>{
         this.errorDialog(error.error.mensaje, "edit")
@@ -98,9 +98,12 @@ export class VehiculosDetalleComponent implements OnInit {
     this.arreglo.vehiculo = this.matricula;
     this.arregloService.saveArreglo(this.arreglo).subscribe(data=>{
       console.log("DatitaSaveArreglo: " + data)
+      document.getElementById("close").click();
+      this.cargarArreglos()
+    }, 
+    error=>{
+      this.errorDialog(error.error.mensaje, "edit")
     })
-    document.getElementById("close").click();
-    this.cargarArreglos()
   }
 
   filter(event){
@@ -110,9 +113,13 @@ export class VehiculosDetalleComponent implements OnInit {
     this.rows = temp;
   }
 
-  errorDialog(texto:string, tipo:string){
+  errorDialog(texto, tipo:string){
+    document.getElementById("close").click();
     if(tipo == "edit"){
-      this.titleError = texto;
+      for (const key in texto) {
+        this.titleError = texto[key];
+        break;
+      }
       document.getElementById("botonError").click()
     }else{
       document.getElementById("closeConfirmacion").click();

@@ -6,6 +6,7 @@ import { ClientesComponent } from './clientes.component';
 import { ClientesDetalleComponent } from './clientes-detalle/clientes-detalle.component';
 import { ModalsModule } from 'src/app/modals/modals.module';
 import { VehiculosModule } from '../vehiculos/vehiculos.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { VehiculosModule } from '../vehiculos/vehiculos.module';
     FormsModule,
     TableModule,
     ModalsModule,
-    VehiculosModule
+    VehiculosModule,
+    AppRoutingModule
   ], 
   exports: [
     ClientesComponent,
