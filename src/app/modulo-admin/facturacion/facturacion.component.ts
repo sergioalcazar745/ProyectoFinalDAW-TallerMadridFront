@@ -4,6 +4,11 @@ import { Arreglo, GastoSimple } from 'src/app/interfaces/facturacion';
 import { Gasto } from 'src/app/interfaces/facturacion';
 import { FacturacionService } from 'src/app/services/facturacion.service';
 
+// para el pdfmaker
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'app-facturacion',
   templateUrl: './facturacion.component.html',
@@ -34,7 +39,7 @@ export class FacturacionComponent implements OnInit {
   columns2 = [{ name: 'Id' }, { name: 'Fecha' }, { name: 'Descripcion' }, { name: 'Precio' }, { name: 'Vehiculo' }];
 
 
-  //MODAL
+  //MODAL 1
   fecha: Date;
   concepto: string = "";
   importe: string = "";
@@ -43,7 +48,14 @@ export class FacturacionComponent implements OnInit {
   UpdateError:boolean=false;
   status:string="";
   UpdateOk:boolean=false;
+
+
+  //MODAL 2
   matricula: string="";
+  id2:number;
+  precio2:string;
+  fecha2:Date;
+  descripcion2:string;
 
 
 
@@ -107,8 +119,14 @@ export class FacturacionComponent implements OnInit {
   }
 
   onClickRow2(event) {
+  
     this.matricula=event.vehiculo;
+    this.precio2=event.precio;
+    this.descripcion2=event.descripcion;
+    this.id2=event.id;
+    this.fecha2=event.fecha;
     document.getElementById('botonModal2').click()
+
     
   }
 
@@ -118,7 +136,9 @@ export class FacturacionComponent implements OnInit {
   }
 
   generarFactura(){
-
+    this.createPdf();
+    // this.serv.factura(this.matricula,this.precio2,this.descripcion2,this.id2,this.fecha2);
+    
   }
   filter2(event) {
     const temp2 = this.temp.filter(function (d) {
@@ -154,6 +174,52 @@ export class FacturacionComponent implements OnInit {
         this.status="Error al modificar el gasto";
       }
     )
+  }
+
+  createPdf(){
+    this.serv.factura(this.id2)
+    const pdfDefinition: any = {
+   
+      content: [
+        {text: "Factura Talleres Madrid",style: 'header'},
+        {
+          text: 'Fecha: '+this.fecha2
+        },
+        {
+          style: 'tableExample',
+          table: {
+              body: [
+                  ['id', 'fecha', 'matricula', 'descripcion','precio'],
+                  [this.id2, this.fecha2, this.matricula, this.descripcion2,this.precio2]
+              ]
+          }
+      }
+      ],
+      styles: {
+        header: {
+            fontSize: 18,
+            bold: true,
+            margin: [0, 0, 0, 10]
+        },
+        subheader: {
+            fontSize: 16,
+            bold: true,
+            margin: [0, 10, 0, 5]
+        },
+        tableExample: {
+            margin: [0, 5, 0, 15]
+        },
+        tableHeader: {
+            bold: true,
+            fontSize: 13,
+            color: 'black'
+        }
+    },
+    }
+
+    const pdf = pdfMake.createPdf(pdfDefinition);
+    pdf.download('Factura talleres Madrid ' +this.id2);
+
   }
 
 

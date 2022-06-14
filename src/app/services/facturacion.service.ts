@@ -6,6 +6,8 @@ import { Arreglo } from '../interfaces/facturacion';
 import {Observable} from 'rxjs';
 import { Router } from '@angular/router';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -65,6 +67,19 @@ export class FacturacionService {
   deleteGasto(id:number){
     return this.serv.post('http://127.0.0.1:8000/facturacion/DeleteGasto/',
     {"id":id})
+  }
+
+  factura(id:number){
+    return this.serv.post('http://127.0.0.1:8000/pdf/',{"id":id}).subscribe(
+      data=>{
+        console.log("DATA")
+        console.log(data)
+      },
+      error=>{
+        console.log("ERROR")
+        console.log(error)
+      }
+    )
   }
 
 }
