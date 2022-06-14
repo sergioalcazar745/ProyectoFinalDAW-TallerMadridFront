@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ClienteService {
 
-  httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
+  httpHeaders = new HttpHeaders({'Content-Type': 'application/json',"Authorization": "Token "+localStorage.getItem('token')})
 
   constructor(private http: HttpClient) { }
 
@@ -19,22 +19,22 @@ export class ClienteService {
     }
 
     getCliente(dni:string){
-      return this.http.get<Cliente>(environment.baseurl + 'cliente/user/',{ params: {dni: dni}})
+      return this.http.get<Cliente>(environment.baseurl + 'cliente/user/',{ params: {dni: dni},headers: this.httpHeaders})
     }
 
     setCliente(cliente:Cliente){
       console.log("ClienteService: " + cliente)
-      return this.http.post<Cliente>(environment.baseurl + "cliente/signup/", cliente)
+      return this.http.post<Cliente>(environment.baseurl + "cliente/signup/", cliente,{headers: this.httpHeaders})
     }
 
     updateCliente(cliente:Cliente){
       alert("ClienteService: " + cliente)
-      return this.http.put<Cliente>(environment.baseurl + "cliente/modificar/", cliente)
+      return this.http.put<Cliente>(environment.baseurl + "cliente/modificar/", cliente,{headers: this.httpHeaders})
 
     }
 
     deleteCliente(dni:string){
       console.log("DniCliente: " + dni)
-      return this.http.get<Cliente>(environment.baseurl + "cliente/borrar", {params: {dni: dni}})
+      return this.http.get<Cliente>(environment.baseurl + "cliente/borrar", {params: {dni: dni},headers: this.httpHeaders})
     }
 }

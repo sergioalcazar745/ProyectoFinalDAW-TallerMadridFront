@@ -21,6 +21,9 @@ export class VehiculosComponent implements OnInit {
   constructor(private vehiculoService : VehiculoService, private router : Router) { }
 
   ngOnInit(): void {
+    if(!localStorage.getItem('token')){
+      this.router.navigateByUrl('/inicio')
+    }
     this.cargarVehiculos()
   }
 

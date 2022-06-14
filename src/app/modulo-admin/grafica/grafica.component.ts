@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Chart, registerables } from 'chart.js';
 import { Arreglo, Gasto } from 'src/app/interfaces/facturacion';
 import { FacturacionService } from 'src/app/services/facturacion.service';
@@ -37,9 +38,12 @@ Gastos = {
 chart:any = [];
 
 
-  constructor(private serv:FacturacionService) { }
+  constructor(private serv:FacturacionService,private router:Router) { }
 
   ngOnInit(): void {
+    if(!localStorage.getItem('token')){
+      this.router.navigateByUrl('/inicio')
+    }
     this.ingresosTotales= this.serv.getArreglos();
     this.gastosTotales= this.serv.getGastos();
     // console.log("INgresos-----" +Object.values( this.ingresosTotales))

@@ -51,7 +51,8 @@ export class CabeceraComponent implements OnInit {
     console.log("data: " + this.data)
     if(localStorage.getItem("sesion") != null){
       this.data = localStorage.getItem("sesion")
-    }      
+    }
+      
   }
 
   logout(){    
@@ -61,5 +62,6 @@ export class CabeceraComponent implements OnInit {
     localStorage.setItem("token", "")
     this.data="false";   
     this.router.navigateByUrl("/inicio")
+    localStorage.clear();
   }
 }

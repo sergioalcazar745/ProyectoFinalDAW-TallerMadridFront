@@ -32,6 +32,9 @@ export class ClientesDetalleComponent implements OnInit {
   constructor(private route: ActivatedRoute, private cilenteService : ClienteService, private vehiculoService : VehiculoService, private router: Router) { }
 
   ngOnInit(): void {
+    if(!localStorage.getItem('token')){
+      this.router.navigateByUrl('/inicio')
+    }
     this.route.params.subscribe((param) => {
       //console.log("parametros" + Object.values(param));
       this.cilenteService.getCliente(Object.values(param).toString()).subscribe((data) => {

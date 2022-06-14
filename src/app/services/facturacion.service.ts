@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class FacturacionService {
   baseurl= "http:/localhost:8000";
-  httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
+  httpHeaders = new HttpHeaders({'Content-Type': 'application/json',"Authorization": "Token "+localStorage.getItem('token')})
   arreglos:Arreglo[]=[]
   gastos:Gasto[]=[]
 
@@ -22,7 +22,7 @@ export class FacturacionService {
   getGastosPorFecha(inicio:Date,fin:Date){
     return this.serv.get<grafica>
     ('http://127.0.0.1:8000/facturacion/gastosPorFecha?inicio='+inicio+'&fin='+fin,
-    {headers: this.httpHeaders}
+    {headers: this.httpHeaders,}
     ).subscribe(
       data => {
         data['arreglos'].map(a=>{this.arreglos.push(a)})
@@ -37,12 +37,12 @@ export class FacturacionService {
     );;
   }
   getGastosTotales(){
-    return this.serv.get<Gasto[]>('http://127.0.0.1:8000/facturacion/gastos')
+    return this.serv.get<Gasto[]>('http://127.0.0.1:8000/facturacion/gastos',{headers: this.httpHeaders})
     
   }
 
   getArreglosTotales(){
-    return this.serv.get<Arreglo[]>('http://127.0.0.1:8000/arreglo/arreglos')
+    return this.serv.get<Arreglo[]>('http://127.0.0.1:8000/arreglo/arreglos',{headers: this.httpHeaders})
   }
 
   getArreglos(){
@@ -54,23 +54,23 @@ export class FacturacionService {
 
   mandarCorreo(nombre:string,apellidos:string,mail:string,tfn:string,vehiculo:string,motivo:string){
     return this.serv.post('http://127.0.0.1:8000/cliente/formularioContacto/',
-    {"nombre":nombre,"apellidos":apellidos,"mail":mail,"tfn":tfn,"vehiculo":vehiculo,"motivo":motivo}).subscribe()
+    {"nombre":nombre,"apellidos":apellidos,"mail":mail,"tfn":tfn,"vehiculo":vehiculo,"motivo":motivo,headers: this.httpHeaders}).subscribe()
   }
 
   updateGasto(id:number, fecha:Date , concepto:string, importe:string, usuario:string){
     return this.serv.post('http://127.0.0.1:8000/facturacion/UpdateGasto/?id='+id,
-    {'fecha':fecha,'concepto':concepto,'importe':importe})
+    {'fecha':fecha,'concepto':concepto,'importe':importe,headers: this.httpHeaders})
   }
 
 
 
   deleteGasto(id:number){
     return this.serv.post('http://127.0.0.1:8000/facturacion/DeleteGasto/',
-    {"id":id})
+    {"id":id,headers: this.httpHeaders})
   }
 
   factura(id:number){
-    return this.serv.post('http://127.0.0.1:8000/pdf/',{"id":id}).subscribe(
+    return this.serv.post('http://127.0.0.1:8000/pdf/',{"id":id,headers: this.httpHeaders}).subscribe(
       data=>{
         console.log("DATA")
         console.log(data)

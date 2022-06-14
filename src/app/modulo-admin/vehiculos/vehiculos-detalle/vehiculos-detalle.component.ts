@@ -31,6 +31,9 @@ export class VehiculosDetalleComponent implements OnInit {
   constructor(private route : ActivatedRoute, private vehiculoService : VehiculoService, private arregloService : ArreglosService, private router: Router) { }
 
   ngOnInit(): void {
+    if(!localStorage.getItem('token')){
+      this.router.navigateByUrl('/inicio')
+    }
     this.route.params.subscribe((param) => {
       //console.log("parametros" + Object.values(param));
       this.vehiculoService.getVehiculo(Object.values(param).toString()).subscribe((data) => {
