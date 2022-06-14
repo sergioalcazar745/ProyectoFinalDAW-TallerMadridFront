@@ -8,28 +8,29 @@ import { Arreglo, ArregloSimple } from '../interfaces/facturacion';
 })
 export class ArreglosService {
 
-  vehiculo
-  httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
+
+  httpHeaders = new HttpHeaders({'Content-Type': 'application/json',"Authorization": "Token "+localStorage.getItem('token')})
+  cabecera={"headers": this.httpHeaders}
   constructor(private http: HttpClient) { }
 
   getArregloByMatricula(matricula:string){
-    return this.http.get<Arreglo[]>(environment.baseurl+"arreglo/getarreglobymatricula/", { params: {matricula: matricula}});
+    return this.http.get<Arreglo[]>(environment.baseurl+"arreglo/getarreglobymatricula/", { params: {matricula: matricula},headers: this.httpHeaders},);
   }
 
   getArregloById(id:number){
-    return this.http.get<Arreglo>(environment.baseurl+"arreglo/getarreglobyid/", { params: {id: id}});
+    return this.http.get<Arreglo>(environment.baseurl+"arreglo/getarreglobyid/", { params: {id: id},headers: this.httpHeaders});
   }
 
   getArreglos(){
-    return this.http.get<Arreglo[]>(environment.baseurl+"arreglo/arreglos");
+    return this.http.get<Arreglo[]>(environment.baseurl+"arreglo/arreglos",this.cabecera);
   }
 
   saveArreglo(arreglo:ArregloSimple){
-    return this.http.post<Arreglo>(environment.baseurl+"arreglo/savearreglo/", arreglo);
+    return this.http.post<Arreglo>(environment.baseurl+"arreglo/savearreglo/", arreglo,{headers: this.httpHeaders});
   }
 
   deleteArreglo(id:number){
-    return this.http.get<Arreglo>(environment.baseurl+"arreglo/deletearreglo/", { params: {id: id}});
+    return this.http.get<Arreglo>(environment.baseurl+"arreglo/deletearreglo/", { params: {id: id},headers: this.httpHeaders});
   }
 
   editArreglo(arreglo:ArregloSimple){
