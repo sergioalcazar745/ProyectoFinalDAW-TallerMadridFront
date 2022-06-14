@@ -62,8 +62,9 @@ export class FacturacionService {
 
 
 
-  deleteGasto(){
-
+  deleteGasto(id:number){
+    return this.serv.post('http://127.0.0.1:8000/facturacion/DeleteGasto/',
+    {"id":id})
   }
 
 }

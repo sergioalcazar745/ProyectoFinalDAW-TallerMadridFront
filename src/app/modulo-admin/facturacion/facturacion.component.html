@@ -25,7 +25,9 @@
         <app-table [rows]="rows2" [columns]="columns2" (clickfila)="onClickRow2($event)" (filterKey)="filter2($event)"></app-table>
 
         <button type="button" id="botonModal" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-        data-whatever="@mdo">Añadir cliente</button>
+        data-whatever="@mdo">Modal Gasto</button>
+        <button type="button" id="botonModal2" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2"
+        data-whatever="@mdo">Modal Arreglo</button>
     </div>
 </div>
 <!-- <div *ngIf="datosModal!=undefined"> -->
@@ -71,6 +73,27 @@
                 <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal" hidden>Cerrar</button>
                 <button type="button" class="btn btn-primary" (click)="deleteGasto()">Borrar gasto</button>
                 <button type="button" class="btn btn-primary" (click)="updateGasto()">Modificar Gasto</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2  id="exampleModalLabel">Arreglo del vehiculo</h2>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="close2" data-dismiss="modal" hidden>Cerrar</button><br>
+                <button type="button" class="btn btn-primary" (click)="generarFactura()">Generar Factura</button>
+                <button type="button" class="btn btn-primary" (click)="verVehiculo()">Ver vehiculo</button>
             </div>
         </div>
     </div>

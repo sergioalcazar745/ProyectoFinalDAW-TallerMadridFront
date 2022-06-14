@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Arreglo, GastoSimple } from 'src/app/interfaces/facturacion';
 import { Gasto } from 'src/app/interfaces/facturacion';
 import { FacturacionService } from 'src/app/services/facturacion.service';
@@ -42,10 +43,11 @@ export class FacturacionComponent implements OnInit {
   UpdateError:boolean=false;
   status:string="";
   UpdateOk:boolean=false;
+  matricula: string="";
 
 
 
-  constructor(private serv: FacturacionService) { }
+  constructor(private serv: FacturacionService, private router:Router) { }
 
   ngOnInit(): void {
     
@@ -105,10 +107,19 @@ export class FacturacionComponent implements OnInit {
   }
 
   onClickRow2(event) {
-    // if(event.fecha!=undefined)
-    // document.getElementById('botonModal2').click()
+    this.matricula=event.vehiculo;
+    document.getElementById('botonModal2').click()
+    
   }
 
+  verVehiculo(){
+    document.getElementById('close2').click()
+    this.router.navigate(["/vehiculos-detalle/", this.matricula]);
+  }
+
+  generarFactura(){
+
+  }
   filter2(event) {
     const temp2 = this.temp.filter(function (d) {
       return d.vehiculo.indexOf(event) !== -1 || !event;
@@ -149,7 +160,17 @@ export class FacturacionComponent implements OnInit {
 
 
   deleteGasto(){
-    
+    this.serv.deleteGasto(this.id).subscribe(
+      data=>{
+        this.UpdateOk=true;
+        this.status="Gasto borrado con éxito";
+        this.cargarGastosTotales();
+      },
+      error=>{
+        this.UpdateError=true;
+        this.status="No hemos podido borrar este gasto";
+      }
+    )
   }
   cargarGastosTotales(){
     this.rows=[]
