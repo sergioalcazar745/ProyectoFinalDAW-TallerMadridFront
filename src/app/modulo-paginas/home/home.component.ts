@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { InicioSesionService } from 'src/app/services/inicioSesionService';
 //import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -10,15 +11,18 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor() {
+  constructor(private serv:InicioSesionService) {
   }
 
   ngOnInit(): void {
+   
+
     console.log("pedro")
     if(localStorage.getItem("reload") == "false"){
       console.log("pedro")
-      // localStorage.clear()
-      // window.location.reload();
+      localStorage.clear()
+      window.location.reload();
+      this.serv.logout().subscribe();
     }
   }
 }

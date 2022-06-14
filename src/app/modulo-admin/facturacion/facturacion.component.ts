@@ -62,6 +62,9 @@ export class FacturacionComponent implements OnInit {
   constructor(private serv: FacturacionService, private router:Router) { }
 
   ngOnInit(): void {
+    if(!localStorage.getItem('token')){
+      this.router.navigateByUrl('/inicio')
+    }
     
     // this.serv.getArreglosTotales().subscribe(res=>{this.arreglos=res})
 

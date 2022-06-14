@@ -18,6 +18,7 @@ export class ClientesComponent implements OnInit {
   cliente:Cliente;
 
   constructor(private clientesService: ClienteService, private router: Router) {
+    
     this.cargarClientes();
   }
 
@@ -61,6 +62,9 @@ export class ClientesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(!localStorage.getItem('token')){
+      this.router.navigateByUrl('/inicio')
+    }
     if(localStorage.getItem("reload") == "true"){
       window.location.reload();
       localStorage.setItem("reload", "false")

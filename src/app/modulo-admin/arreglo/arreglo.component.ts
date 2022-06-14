@@ -18,6 +18,9 @@ export class ArregloComponent implements OnInit {
   constructor(private arregloService: ArreglosService, private router: Router) { }
 
   ngOnInit(): void {
+    if(!localStorage.getItem('token')){
+      this.router.navigateByUrl('/inicio')
+    }
     this.cargarArreglos()
   }
 
