@@ -54,7 +54,7 @@ export class FacturacionService {
   mandarCorreo(nombre:string,apellidos:string,mail:string,tfn:string,vehiculo:string,motivo:string){
     var body={"nombre":nombre,"apellidos":apellidos,"mail":mail,"tfn":tfn,"vehiculo":vehiculo,"motivo":motivo}
     return this.serv.post(environment.baseurl+'clientecontacto/formularioContacto/',
-    body,).subscribe()
+    body,)
   }
 
   updateGasto(id:number, fecha:Date , concepto:string, importe:string, usuario:string){

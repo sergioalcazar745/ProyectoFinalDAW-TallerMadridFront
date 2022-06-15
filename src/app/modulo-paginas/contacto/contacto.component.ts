@@ -13,6 +13,9 @@ export class ContactoComponent implements OnInit {
   tfn="";
   vehiculo="";
   motivo="";
+  error=false;
+  data=false;
+  status=""
   constructor(private serv:FacturacionService) { }
 
   ngOnInit(): void {
@@ -21,6 +24,15 @@ export class ContactoComponent implements OnInit {
   enviarCorreo(){
     console.log(this.mail);
     console.log(this.vehiculo);
-    this.serv.mandarCorreo(this.nombre,this.apellidos,this.mail,this.tfn,this.vehiculo,this.motivo);
+    this.serv.mandarCorreo(this.nombre,this.apellidos,this.mail,this.tfn,this.vehiculo,this.motivo).subscribe(
+      data=>{
+        this.data=true;
+        this.status="Se ha enviado la petición con éxito";
+      },
+      error=>{
+        this.error=true;
+        this.status="Hemos tenido problemas al enviar el correo. Inténtelo en otro momento";
+      }
+    );
   }
 }
