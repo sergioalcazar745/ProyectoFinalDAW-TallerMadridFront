@@ -5,14 +5,13 @@ import { Gasto } from '../interfaces/facturacion';
 import { Arreglo } from '../interfaces/facturacion';
 import {Observable} from 'rxjs';
 import { Router } from '@angular/router';
-
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class FacturacionService {
-  baseurl= "http:/localhost:8000";
   httpHeaders = new HttpHeaders({'Content-Type': 'application/json',"Authorization": "Token "+localStorage.getItem('token')})
   arreglos:Arreglo[]=[]
   gastos:Gasto[]=[]
@@ -21,7 +20,7 @@ export class FacturacionService {
 
   getGastosPorFecha(inicio:Date,fin:Date){
     return this.serv.get<grafica>
-    ('http://127.0.0.1:8000/facturacion/gastosPorFecha?inicio='+inicio+'&fin='+fin,
+    (environment.baseurl+'facturacion/gastosPorFecha?inicio='+inicio+'&fin='+fin,
     {headers: this.httpHeaders,}
     ).subscribe(
       data => {
@@ -37,12 +36,12 @@ export class FacturacionService {
     );;
   }
   getGastosTotales(){
-    return this.serv.get<Gasto[]>('http://127.0.0.1:8000/facturacion/gastos',{headers: this.httpHeaders})
+    return this.serv.get<Gasto[]>(environment.baseurl+'facturacion/gastos',{headers: this.httpHeaders})
     
   }
 
   getArreglosTotales(){
-    return this.serv.get<Arreglo[]>('http://127.0.0.1:8000/arreglo/arreglos',{headers: this.httpHeaders})
+    return this.serv.get<Arreglo[]>(environment.baseurl+'arreglo/arreglos',{headers: this.httpHeaders})
   }
 
   getArreglos(){
@@ -53,24 +52,28 @@ export class FacturacionService {
   }
 
   mandarCorreo(nombre:string,apellidos:string,mail:string,tfn:string,vehiculo:string,motivo:string){
-    return this.serv.post('http://127.0.0.1:8000/cliente/formularioContacto/',
-    {"nombre":nombre,"apellidos":apellidos,"mail":mail,"tfn":tfn,"vehiculo":vehiculo,"motivo":motivo,headers: this.httpHeaders}).subscribe()
+    var body={"nombre":nombre,"apellidos":apellidos,"mail":mail,"tfn":tfn,"vehiculo":vehiculo,"motivo":motivo}
+    return this.serv.post(environment.baseurl+'clientecontacto/formularioContacto/',
+    body,).subscribe()
   }
 
   updateGasto(id:number, fecha:Date , concepto:string, importe:string, usuario:string){
-    return this.serv.post('http://127.0.0.1:8000/facturacion/UpdateGasto/?id='+id,
-    {'fecha':fecha,'concepto':concepto,'importe':importe,headers: this.httpHeaders})
+    var body={'fecha':fecha,'concepto':concepto,'importe':importe}
+    return this.serv.post(environment.baseurl+'facturacion/UpdateGasto/?id='+id,
+    body,{headers: this.httpHeaders})
   }
 
 
 
   deleteGasto(id:number){
-    return this.serv.post('http://127.0.0.1:8000/facturacion/DeleteGasto/',
-    {"id":id,headers: this.httpHeaders})
+    var body={"id":id}
+    return this.serv.post(environment.baseurl+'facturacion/DeleteGasto/',
+    body,{headers: this.httpHeaders})
   }
 
   factura(id:number){
-    return this.serv.post('http://127.0.0.1:8000/pdf/',{"id":id,headers: this.httpHeaders}).subscribe(
+    var body={"id":id}
+    return this.serv.post(environment.baseurl+'pdf/',body,{headers: this.httpHeaders}).subscribe(
       data=>{
         console.log("DATA")
         console.log(data)
@@ -80,6 +83,13 @@ export class FacturacionService {
         console.log(error)
       }
     )
+  }
+
+  addGasto(fechaadd,dniadd,conceptoadd,importeadd){
+    console.log(localStorage.getItem('token'))
+    console.log(dniadd)
+    var gasto={"fecha":fechaadd,"usuario":dniadd,"concepto":conceptoadd,"importe":importeadd}
+    return this.serv.post(environment.baseurl+'facturacion/addGasto/',gasto,{headers: this.httpHeaders})
   }
 
 }

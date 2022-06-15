@@ -1,4 +1,5 @@
-<form class="container pt-5">
+<div class="fondo">
+    <form class="container pt-5">
     <div class="pt-5">
         <legend class="text-center mb-4">Datos de cliente</legend>
         <div class="row form-group my-3">
@@ -41,11 +42,11 @@
 </form>
 <h2 class="text-center pt-3">Vehiculos - {{dni}}</h2>
 <app-table [rows]="rows" [columns]="columns" (clickfila)="onClickRow($event)" (filterKey)="filter($event)"></app-table>
-<div class="container mb-3">
-    <a href="" class="btn btn-warning" (click)="edit()">Editar</a>
+<div class="container pb-5">
+    <button  class="btn btn-warning" (click)="edit()">Editar</button>
     <button type="button" style="margin-left: 15px;" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Eliminar</button>
     <button type="button" style="margin-left: 15px;" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Añadir vehiculo</button>
-    <a href="" class="btn btn-primary" style="margin-left: 15px;" (click)="return()" routerLink="/clientes" routerLinkActive="router-link-active" >Volver</a>
+    <button  class="btn btn-primary" style="margin-left: 15px;" (click)="return()" routerLink="/clientes" routerLinkActive="router-link-active" >Volver</button>
 </div>
 <app-modal-vehiculo (clickAdd)="add($event)" [tipo] = "'cliente'"></app-modal-vehiculo>
 <app-modal-confirmacion (clickAdd)="delete()" [title]="title"></app-modal-confirmacion>
@@ -71,4 +72,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

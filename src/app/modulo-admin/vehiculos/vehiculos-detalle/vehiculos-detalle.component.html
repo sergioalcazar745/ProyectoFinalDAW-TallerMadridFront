@@ -1,5 +1,5 @@
-<div class="container">
-    
+<div class="fondo">
+    <div class="container">
     <form class="py-5">
         <h2 class="text-center mt-5">Datos del vehiculo</h2>
         <div class="pt-5">
@@ -39,11 +39,11 @@
 
     <app-table [rows]="rows" [columns]="columns" (clickfila)="onClickRow($event)" (filterKey)="filter($event)"></app-table>
 
-    <div class="mb-3">
+    <div class="pb-5">
         <a href="" class="btn btn-warning mx-2" (click)="edit()">Edit</a>
         <button type="button" style="margin-left: 15px;" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Eliminar</button>
         <button type="button" style="margin-left: 15px;"class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Añadir arreglo</button>
-        <a href="" class="btn btn-primary" style="margin-left: 15px;" (click)="return()">Volver</a>
+        <button  class="btn btn-primary" style="margin-left: 15px;" (click)="return()">Volver</button>
     </div>
     
     <app-modal-arreglo (clickAdd)="add($event)"></app-modal-arreglo>    
@@ -70,4 +70,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

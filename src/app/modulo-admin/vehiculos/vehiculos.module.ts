@@ -5,6 +5,7 @@ import { TableModule } from 'src/app/table/table.module';
 import { VehiculosComponent } from './vehiculos.component';
 import { VehiculosDetalleComponent } from './vehiculos-detalle/vehiculos-detalle.component';
 import { ModalsModule } from 'src/app/modals/modals.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ModalsModule } from 'src/app/modals/modals.module';
     CommonModule,
     FormsModule,
     TableModule,
-    ModalsModule
+    ModalsModule,
+    
   ], 
   exports: [ 
     VehiculosComponent,

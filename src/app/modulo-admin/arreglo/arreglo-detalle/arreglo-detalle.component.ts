@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { id } from '@swimlane/ngx-datatable';
 import { Arreglo, ArregloSimple } from 'src/app/interfaces/facturacion';
 import { ArreglosService } from 'src/app/services/arreglos.service';
 
@@ -48,21 +49,29 @@ export class ArregloDetalleComponent implements OnInit {
   }
 
   edit(){
+    if(this.descripcion==""  || this.fecha=="" || this.precio=="" || this.vehiculo==""){
+      this.errorDialog("No puedes enviar campos vacios", "edit")
+    }
+    else{
     this.arregloSimple={id:this.arreglo.id, fecha:this.fecha, descripcion:this.descripcion, precio:this.precio, vehiculo:this.vehiculo}
-    this.arregloService.editArreglo(this.arregloSimple).subscribe(data=>{
+    this.arregloService.editArreglo(this.arregloSimple).subscribe(
+      data=>{
       console.log("DatitaEdit" + Object.values(data))
       this.router.navigateByUrl("/arreglos")
     },
     error=>{
-      this.errorDialog(error.error.mensaje, "edit")
-    })
+      
+      this.errorDialog("Comprueba la matricula o el importe", "edit")
+      console.log(Object.values(error.error.mensaje))
+      
+    })}
   }
 
   return(){
     this.router.navigateByUrl("/arreglos")
   }
 
-  errorDialog(texto:string, tipo:string){
+  errorDialog(texto, tipo){
     if(tipo == "edit"){
       this.titleError = texto;
       document.getElementById("botonError").click()

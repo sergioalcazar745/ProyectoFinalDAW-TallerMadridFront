@@ -18,9 +18,12 @@ export class ModalVehiculoComponent implements OnInit {
   vehiculo:VehiculoSimple;
   @Output() clickAdd = new EventEmitter();
   @Input() tipo;
-  constructor() { }
+  constructor() {
+    
+   }
 
   ngOnInit(): void {
+   
   }
 
   add(){
@@ -30,5 +33,8 @@ export class ModalVehiculoComponent implements OnInit {
       this.vehiculo = {marca:this.marca, modelo:this.modelo, color:this.color, matricula:this.matricula, cliente:this.cliente}
       this.clickAdd.emit(this.vehiculo)
     }    
+  }
+  cerrar(){
+    this.error="";
   }
 }
