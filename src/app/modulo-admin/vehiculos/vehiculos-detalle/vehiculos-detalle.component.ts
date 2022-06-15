@@ -89,7 +89,7 @@ export class VehiculosDetalleComponent implements OnInit {
   }
 
   return(){
-    this.router.navigateByUrl("/vehiculos")
+    this.router.navigate(["/vehiculos"])
   }
 
   onClickRow(event){

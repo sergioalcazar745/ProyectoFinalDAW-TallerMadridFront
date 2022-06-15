@@ -64,4 +64,8 @@ export class CabeceraComponent implements OnInit {
     this.router.navigateByUrl("/inicio")
     localStorage.clear();
   }
+
+  addcolor(e){
+    console.log(e);
+  }
 }

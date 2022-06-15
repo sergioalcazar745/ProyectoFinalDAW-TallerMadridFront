@@ -15,8 +15,15 @@ nav img{
 }
 
 .color{
-    background: rgba(0,0,0,0.4)!important;
+    background-color: rgba(0,0,0,0.4)!important;
    /*background-color:transparent;*/
+}
+li a {
+    color: white!important;
+}
+
+li a:active{
+    color: yellow!important;
 }
 
 

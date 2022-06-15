@@ -7,6 +7,7 @@ import { FacturacionService } from 'src/app/services/facturacion.service';
 // para el pdfmaker
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { ClienteService } from 'src/app/services/cliente.service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -24,6 +25,7 @@ export class FacturacionComponent implements OnInit {
   arreglo: Arreglo;
   datosModal: GastoSimple;
   cont: number = 0;
+  listaDni:string[]=[]
 
   // TABLA GASTOS
   rows = [];
@@ -58,13 +60,21 @@ export class FacturacionComponent implements OnInit {
   descripcion2:string;
 
 
+  //MODAL 3
+  fechaadd:Date=new Date();
+  dniadd:string=""
+  conceptoadd:string=""
+  importeadd:number=0;
 
-  constructor(private serv: FacturacionService, private router:Router) { }
+
+
+  constructor(private serv: FacturacionService, private router:Router, private servCli:ClienteService) { }
 
   ngOnInit(): void {
     if(!localStorage.getItem('token')){
       this.router.navigateByUrl('/inicio')
     }
+
     
     // this.serv.getArreglosTotales().subscribe(res=>{this.arreglos=res})
 
@@ -154,6 +164,7 @@ export class FacturacionComponent implements OnInit {
     for (const key in list) {
       this.facturacion = { id:list[key].id, concepto: list[key].concepto, fecha: list[key].fecha, importe: list[key].importe, usuario: list[key].usuario.username }
       this.change.push(this.facturacion)
+
     }
   }
 
@@ -264,5 +275,23 @@ export class FacturacionComponent implements OnInit {
   );
   }
 
+  addGasto(){
+    this.serv.addGasto(this.fechaadd,this.dniadd,this.conceptoadd,this.importeadd).subscribe(
+      data=>{
+        this.UpdateError==true;
+        this.status="Gasto añadido con exito"
+        this.cargarGastosTotales()
+      },
 
+      error=>{
+        this.UpdateError==false;
+        this.status="Error al añadir el gasto"
+      }
+    )
+  }
+
+  resetStatus(){
+    this.UpdateError==false;
+        this.status=""
+  }
 }

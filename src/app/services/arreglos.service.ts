@@ -34,7 +34,7 @@ export class ArreglosService {
   }
 
   editArreglo(arreglo:ArregloSimple){
-    return this.http.put<Arreglo>(environment.baseurl+"arreglo/updatearreglo/", arreglo);
+    return this.http.put<Arreglo>(environment.baseurl+"arreglo/updatearreglo/", arreglo,{headers: this.httpHeaders});
   }
 
   /*getUsu(usuario:string, password:string){
